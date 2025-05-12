@@ -1,0 +1,74 @@
+.main-page {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    margin-left: 0%;
+    width:80%;
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .main-page {
+        margin-left: 0%;
+        padding: 10px;
+    }
+  }
+  
+     /* Container grid for 4 containers per row */
+  .container-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 containers per row */
+    gap: 20px; /* Space between containers */
+  }
+  
+  /* Responsive layout: 2 containers per row for smaller screens */
+  @media (max-width: 768px) {
+    .container-grid {
+      grid-template-columns: repeat(1, 1fr); /* 2 containers per row */
+    }
+  }
+  
+  /* Responsive layout: 1 container per row for very small screens */
+  @media (max-width: 480px) {
+    .container-grid {
+      grid-template-columns: 1fr; /* 1 container per row */
+    }
+  }
+  .logo {
+  max-width: 100%;
+  min-width: 30%;
+  height: 12rem;
+}
+.flex {
+  display: flex;
+  /* Adjust justify-content based on your layout needs */
+  justify-content: flex-start; /* Align items to the start */
+  align-items: left;
+  width: 100%; /* Ensure it uses the full width of the parent */
+}
+
+.search-bar-container {
+
+  flex-basis: 68%;
+  margin-left: 15px; /* Small margin for spacing */
+}
+
+.search-bar {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  
+}
+
+.dropdown-container {
+  flex-basis: 23%;
+}
+
+.dropdown {
+  margin-left: 5px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

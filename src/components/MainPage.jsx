@@ -1,0 +1,182 @@
+import React,{useState} from "react";
+import "./MainPage.css"; 
+import "./container.css";
+import "../App.css";
+import avatar from "../data/gdpr.jpg";
+import { useNavigate } from 'react-router-dom'
+import { HiOutlineChevronRight } from "react-icons/hi";
+import { HiOutlineChevronLeft } from "react-icons/hi";
+import { useStateContext } from '../contexts/ContextProvider';
+const Container = ({ logo, name, description, tags, url }) => {
+  return (
+    <div
+      className="container"
+   
+      style={{ cursor: "pointer" }} // Indicate clickable containers
+    >
+      <div className="container-content">
+        <div className="header">
+          <img src={logo} alt={`${name} logo`} className="h-16 w-30" />
+          <h3 className="name">{name}</h3>
+        </div>
+        <p className="description text-left m-0">{description}</p>
+        <div className="tags">
+          {tags.map((tag, index) => (
+            <span key={index} className="tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className="tag1">
+          <span>Demo</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MainPage = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [InputText, setInputText] = useState("");
+  const navigate = useNavigate();
+   const {setGdpr,setMainPage,home,setHome ,login1,setlogin1,currentMode, setCurrentMode, } = useStateContext();
+  
+  const handleNavigation = (path) => {
+    
+    setMainPage(false)
+    setGdpr(true)
+    setHome(true)
+    navigate(path);
+  };
+  const data = [
+    {
+      logo: avatar,
+      name: "GDPR",
+      description: " GDPR Agent is a tool that helps organizations manage and ensure compliance with the EU's General Data Protection Regulation.",
+      tags: ["Agent", "1.0", "Data Protection"],
+        path: "/gdpr"
+    },
+    {
+      logo: avatar,
+      name: "MEMGPT",
+      description: "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
+      tags: ["Agent", "1.0", "Information Retention"],
+       path: "/gdpr"
+    },
+    {
+      logo: avatar,
+      name: "CAG",
+      description: "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
+      tags: ["Agent", "1.0", "Public Audit"],
+      url: "http://localhost:8503"
+    },
+     {
+      logo: avatar,
+      name: "Agile Agent",
+      description: "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
+      tags: ["Agent", "1.0", "Information Retention"],
+       path: "/gdpr"
+    },
+    {
+      logo: avatar,
+      name: "Agent5",
+      description: "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
+      tags: ["Agent", "1.0", "Public Audit"],
+      url: "http://localhost:8503"
+    },
+   
+  
+  ];
+  
+  const ordersData3 = data;
+  const recordsPerPage = 8;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+ 
+  const inputHandler = (e) => {
+    setInputText(e.target.value.toLowerCase());
+    console.log("Vidhi",e.target.value.toLowerCase())
+  };
+  const records1 = ordersData3.filter((el) => {
+    if (el === "") {
+      return el;
+    } else {
+      return (
+        el.name.toLowerCase().includes(InputText) ||
+        el.description.includes(InputText) ||
+        el.tags.includes(InputText)
+      );
+    }
+  });
+  const records = records1.slice(firstIndex, lastIndex);
+  return (
+    <div >
+     <div className="flex mt-16">
+  <div className="search-bar-container mt-2">
+    <input
+      type="text"
+      placeholder="Search..."
+      className="search-bar"
+      onChange={inputHandler}
+    />
+  </div>
+  <div className="dropdown-container mt-2">
+    <select className="dropdown">
+      <option value="">Select an option</option>
+      <option value="option1">Latest</option>
+      <option value="option2">Most Usoed</option>
+      <option value="option3">Old</option>
+    </select>
+  </div>
+</div>
+
+      <div className="main-page">
+      <div className="container-grid">
+        {records.map((item, index) => (
+          <div key={index} onClick={() => handleNavigation(item.path)} style={{ cursor: 'pointer' }}>
+          <Container
+            logo={item.logo}
+            name={item.name}
+            description={item.description}
+            tags={item.tags}
+          />
+          </div>
+        ))}
+       
+      </div>
+     
+     
+  <div className="flex pagination">
+    <div className=" mt-5" style={{ marginRight: '25px' }}>
+      <a href="#" className="text-black dark:text-white" onClick={prePage}>
+        <HiOutlineChevronLeft />
+      </a>
+    </div>
+  
+    <div className=" mt-5" style={{ marginRight: '45px' }}>
+      <a href="#" className="text-black dark:text-white" onClick={nextPage}>
+        <HiOutlineChevronRight />
+      </a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+      
+   
+  );
+  function prePage() {
+    if (currentPage != firstIndex + 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+  function nextPage() {
+    if (ordersData3.length > lastIndex) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+};
+
+export default MainPage;
