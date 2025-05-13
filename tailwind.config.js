@@ -11,7 +11,7 @@ module.exports = {
           14: '14px',
         },
          spacing: {
-        '1.8': '0.45rem', // Since Tailwind's default spacing is based on a 4px scale, 1.8 would be 0.45rem (1.8 * 0.25rem)
+        '1.9': '0.50rem', // Since Tailwind's default spacing is based on a 4px scale, 1.8 would be 0.45rem (1.8 * 0.25rem)
       },
         rotate: {
           '135': '-45deg',

@@ -37,7 +37,7 @@ const Navbar = () => {
           src={nttlogo}
           alt="nttlogo"
         />
-      <div className='mt-1.8 text-3xl' onClick={handleClick1} style={{ cursor: 'pointer' }}>
+      <div className='mt-1.9 text-3xl' onClick={handleClick1} style={{ cursor: 'pointer' }}>
        Agent Hub
     </div>
     </div>

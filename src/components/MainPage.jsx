@@ -3,6 +3,10 @@ import "./MainPage.css";
 import "./container.css";
 import "../App.css";
 import avatar from "../data/gdpr.jpg";
+import CAG from "../data/CAG.png";
+import MEMGPT from "../data/MEMGPT.png";
+import Agile from "../data/Agile.png";
+import agentimg from '../data/Agent.png';
 import { useNavigate } from 'react-router-dom'
 import { HiOutlineChevronRight } from "react-icons/hi";
 import { HiOutlineChevronLeft } from "react-icons/hi";
@@ -58,28 +62,28 @@ const MainPage = () => {
         path: "/gdpr"
     },
     {
-      logo: avatar,
+      logo: MEMGPT,
       name: "MEMGPT",
       description: "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
       tags: ["Agent", "1.0", "Information Retention"],
        path: "/gdpr"
     },
     {
-      logo: avatar,
+      logo: CAG,
       name: "CAG",
       description: "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
       tags: ["Agent", "1.0", "Public Audit"],
       url: "http://localhost:8503"
     },
      {
-      logo: avatar,
+      logo: Agile,
       name: "Agile Agent",
       description: "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
       tags: ["Agent", "1.0", "Information Retention"],
        path: "/gdpr"
     },
     {
-      logo: avatar,
+      logo: agentimg,
       name: "Agent5",
       description: "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
       tags: ["Agent", "1.0", "Public Audit"],
@@ -111,7 +115,7 @@ const MainPage = () => {
   });
   const records = records1.slice(firstIndex, lastIndex);
   return (
-   <div className="h-screen bg-white mt-0">
+   <div className="h-screen bg-white mt-0 w-full">
   <div className=" items-center justify-center h-full">
     <div className="flex mt-16"> 
   <div className="search-bar-container mt-2">
@@ -148,15 +152,15 @@ const MainPage = () => {
       </div>
      
      
-  <div className="flex pagination items-center justify-center">
-    <div className=" mt-5" style={{textAlign:'center', marginRight: '25px' }}>
-      <a href="#" className="text-black dark:text-white" onClick={prePage}>
+  <div className="flex pagination gap-3" style={{marginLeft:'15%'}}>
+    <div className=" mt-5" >
+      <a href="#" className="text-blue-400" onClick={prePage}>
         <HiOutlineChevronLeft />
       </a>
     </div>
-  
-    <div className=" mt-5" style={{ marginRight: '45px' }}>
-      <a href="#" className="text-black dark:text-white" onClick={nextPage}>
+  <p className="mt-5">1</p>
+    <div className=" mt-5">
+      <a href="#" className="text-blue-400" onClick={nextPage}>
         <HiOutlineChevronRight />
       </a>
     </div>

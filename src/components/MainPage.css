@@ -72,3 +72,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

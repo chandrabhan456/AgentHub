@@ -41,8 +41,8 @@ function Documentation() {
   return (
     <div className="flex flex-col bg-white">
       <div className="container1 mt-10">
-        <h2>GDPR Agent</h2>
-       <div className="button-group">
+        <p className='text-4xl font-bold '>GDPR Agent</p>
+       <div className="button-group mt-5">
   <button>Compliance</button>
   <button>Data Protection</button>
   <button>Privacy Officer</button>
