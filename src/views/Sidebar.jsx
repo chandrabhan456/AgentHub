@@ -124,7 +124,22 @@ const Sidebar = () => {
         </ul>
         </nav>}
 
-{documentation && <div></div>}
+{documentation && <div>
+  
+    <div className='ml-5'style={{ marginTop: '15px', textAlign:'left'}}>
+      <div style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '0px' }}>
+        Version
+      </div>
+      <div style={{ fontSize: '18px', fontWeight: 'normal', marginTop: '5px' }}>
+        1.0
+      </div>
+      <div style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '10px' }}>
+        Last Updated
+      </div>
+      <div style={{ fontSize: '18px', fontWeight: 'normal',marginTop:'5px' }}>
+        May-2025
+      </div>
+    </div></div>}
     </div>
   );
 };

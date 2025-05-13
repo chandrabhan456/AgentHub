@@ -73,7 +73,7 @@ const Gdpr_QA = () => {
       <div className="content-header">
             <p className="text-3xl">GenAI GDPR Agent | {currentChat}</p>
            
-            <div className="button-group" style={{ display: 'flex', gap: '10px',position:'absolute',right:'0' }}>
+            <div className="button-group1" style={{ display: 'flex', gap: '10px',position:'absolute',right:'0' }}>
   <button className="history-button text-xl" onClick={toggleHistory}>
     History
   </button>
@@ -113,7 +113,7 @@ const Gdpr_QA = () => {
     >
       
       <div
-  className={`items-center justify-between p-2 rounded flex-shrink border w-fit max-w-[65%] min-w-[80px] min-h-[65px]  break-words whitespace-normal ${
+  className={` items-center justify-center  p-2 rounded flex-shrink border w-fit max-w-[65%] min-w-[48px] min-h-[65px]  break-words whitespace-normal ${
     message.sender === 'user'
       ? 'bg-[#EDF5FD] text-black border-gray-200'
       : 'bg-white text-black border-gray-200'

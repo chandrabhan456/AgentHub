@@ -148,8 +148,8 @@ const MainPage = () => {
       </div>
      
      
-  <div className="flex pagination">
-    <div className=" mt-5" style={{ marginRight: '25px' }}>
+  <div className="flex pagination items-center justify-center">
+    <div className=" mt-5" style={{textAlign:'center', marginRight: '25px' }}>
       <a href="#" className="text-black dark:text-white" onClick={prePage}>
         <HiOutlineChevronLeft />
       </a>
