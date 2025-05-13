@@ -85,6 +85,8 @@
   background-color: white; /* Equivalent to Tailwind's bg-gray-100 */
   padding: 16px; /* Equivalent to Tailwind's p-4 */
   overflow-y: auto;
+  max-width: 100%;
+  overflow-x: hidden;
   max-height: 32rem; /* Equivalent to Tailwind's max-h-96, which is 384px */
   display: flex;
   flex-direction: column;

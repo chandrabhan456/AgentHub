@@ -25,7 +25,7 @@ const App = () => {
   return (
 <div className={currentMode === 'Dark' ? 'dark' : ''}>
 
-<BrowserRouter>
+<BrowserRouter future={{ v7_startTransition: true,v7_relativeSplatPath:true }}>
   {!login1 ? (
     <Login />
   ) : (
@@ -43,7 +43,7 @@ const App = () => {
         </div>}
 
      {/* Main Content - Takes Remaining Space */}
- <div className={`transition-all duration-300 w-full ${isSidebarVisible ? 'ml-80' : 'ml-0'}`}>
+ <div className={`transition-all duration-300 w-full overflow-x-hidden ${isSidebarVisible ? 'ml-80' : 'ml-80'}`}>
   <Routes>
   {mainPage && (
       <>

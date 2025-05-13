@@ -10,6 +10,9 @@ module.exports = {
         fontSize: {
           14: '14px',
         },
+         spacing: {
+        '1.8': '0.45rem', // Since Tailwind's default spacing is based on a 4px scale, 1.8 would be 0.45rem (1.8 * 0.25rem)
+      },
         rotate: {
           '135': '-45deg',
         },
@@ -54,7 +57,12 @@ module.exports = {
           50:'50%',
           10:'10%',
           40:'40%'
-        },
+        }, minWidth: {
+        '8': '8px',
+      },
+      minHeight: {
+        '65': '65px',
+      },
         backgroundImage: {
           'hero-pattern':
             "url('https://i.ibb.co/MkvLDfb/Rectangle-4389.png')",

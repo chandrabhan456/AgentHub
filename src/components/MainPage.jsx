@@ -111,8 +111,9 @@ const MainPage = () => {
   });
   const records = records1.slice(firstIndex, lastIndex);
   return (
-    <div >
-     <div className="flex mt-16">
+   <div className="h-screen bg-white mt-0">
+  <div className=" items-center justify-center h-full">
+    <div className="flex mt-16"> 
   <div className="search-bar-container mt-2">
     <input
       type="text"
@@ -164,7 +165,7 @@ const MainPage = () => {
 
 </div>
 
-      
+      </div>
    
   );
   function prePage() {

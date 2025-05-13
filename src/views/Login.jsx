@@ -3,7 +3,7 @@ import { emailValidator, passwordValidator } from '../components/regexValidators
 import {useNavigate} from "react-router-dom"
 import { useStateContext } from "../contexts/ContextProvider";
 import "./Login.css";
-import bgimg from '../data/Media.jpg';
+import bgimg from '../data/login1.png';
 
 const Login = () => {
     const { login1, setlogin1 } = useStateContext();
@@ -45,40 +45,41 @@ const Login = () => {
 		
 	return (
 		
-	  <div className="login " >
-	<h4>Login</h4>
-	<form onSubmit={formSubmitter}>
-	  <div className="transparent-input">
-		<input
-		type="text"
-		name="email"
-		placeholder=" username"
-		onChange={handleChange}
-		  className="text_input"
+<div className="login">
+	 <div className="login-form">
+  <form onSubmit={formSubmitter}>
+    <div className="input-group">
+      <label htmlFor="username" className="input-label">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="email"
+        placeholder="Enter your username"
+        onChange={handleChange}
+        className="text-input"
+         autoComplete='current-password'
+      />
+    </div>
+    <div className="input-group mt-2">
+      <label htmlFor="password" className="input-label">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        onChange={handleChange}
+        className="text-input"
+        autoComplete='current-password'
+      />
+    </div>
+    <div className="forgot-password">
+      <a href="#">Forgot Password?</a>
+    </div>
+    <button className="btn">Login</button>
+  </form>
+</div>
 
-		/>
-	  </div>
-	  <div className="mt-2 transparent-input">
-		<input
-		 type="password"
-		 name="password"
-		 placeholder=" password"
-		 onChange={handleChange}
-
-		  className="text_input"
-
-		/>
-	  </div>
-	  <button
-		
-		
-		className="btn"
-
-	  >Login</button>
-	</form>
-	
   </div>
-  
 )
 };
 

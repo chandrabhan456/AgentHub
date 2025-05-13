@@ -49,10 +49,10 @@ const Gdpr_QA = () => {
           ...prevMessages,
           [currentChat]: [
             ...prevMessages[currentChat],
-            { sender: 'bot', text: 'This is a response from the bot.' }
+            { sender: 'bot', text: 'Hello! I’m your friendly AI assistant, here to help you with any questions or information you need. Whether you’re looking for advice, technical assistance, or just curious about something, feel free to ask. I can provide insights, offer solutions, or even just chat about interesting topics. My goal is to make your experience as seamless and informative as possible. If there’s anything specific you’d like to know or discuss, just let me know, and I’ll do my best to assist you. Remember, I’m here to help, so don’t hesitate to reach out anytime!' }
           ]
         }));
-      }, 1000);
+      }, 100);
     }
   };
 
@@ -101,28 +101,33 @@ const Gdpr_QA = () => {
 
     
     {messages[currentChat].length !== 0 && (
-  <div className="chat-container  p-4 ">
-     {(messages[currentChat] || []).map((message, index) => (
+<div className="chat-container p-4" >
+  {(messages[currentChat] || []).map((message, index) => (
+    
+    <div
+      key={index}
+      className={`mb-4  ${
+        message.sender === 'user' ? 'justify-end' : 'justify-start'
+      }`}
+      style={{ display: 'flex' }} // Explicitly ensure flex display
+    >
+      
       <div
-        key={index}
-        className={`mb-4 flex ${
-          message.sender === 'user' ? 'justify-end' : 'justify-start'
-        }`}
-      >
-      <div
-  className={`flex items-center justify-center p-2 rounded border ${
+  className={`items-center justify-between p-2 rounded flex-shrink border w-fit max-w-[65%] min-w-[80px] min-h-[65px]  break-words whitespace-normal ${
     message.sender === 'user'
       ? 'bg-[#EDF5FD] text-black border-gray-200'
       : 'bg-white text-black border-gray-200'
   }`}
-  style={{ minHeight: '65px', minWidth: '80px', maxWidth: '75%' }}
+  style={{overflow:'hidden'}}
 >
-  {message.text}
+
+
+        {message.text}
+      </div>
+    </div>
+  ))}
 </div>
 
-      </div>
-    ))}
-  </div>
 )}
 
   
