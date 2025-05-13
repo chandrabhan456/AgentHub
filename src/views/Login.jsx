@@ -1,19 +1,17 @@
 import React,{useEffect} from 'react';
 import { emailValidator, passwordValidator } from '../components/regexValidators';
-import {useNavigate} from "react-router-dom"
+import {Navigate, useNavigate} from "react-router-dom"
 import { useStateContext } from "../contexts/ContextProvider";
 import "./Login.css";
-import bgimg from '../data/login1.png';
-
 const Login = () => {
-    const { login1, setlogin1 } = useStateContext();
+    const { login1, setlogin1,setMainPage } = useStateContext();
 	
 
 	const [input, setInput] = React.useState({ email: '', password: '' });
 
 	const [errorMessage, seterrorMessage] = React.useState('');
 	const [successMessage, setsuccessMessage] = React.useState('');
-
+   const navigate = useNavigate();
 	const handleChange = e => {
 		setInput({ ...input, [e.target.name]: e.target.value });
 		
@@ -36,7 +34,9 @@ const Login = () => {
 		if(input.email !== 'admin@a.com' || input.password !== 'Password@1') return seterrorMessage('Invalid email or password');
 
 		localStorage.setItem('login','true');
+        setMainPage(true)
         setlogin1(true)
+       
         console.log("logged in")
 	
        

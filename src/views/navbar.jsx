@@ -20,7 +20,9 @@ const Navbar = () => {
   
   const handleClick1 = () => {
     setGdpr(false)
-    
+    setActiveMenu(false)
+    setConfiguration(false)
+    setDocumentation(false)
     setMainPage(true)
     navigate('/'); // Navigate to the home page
   };

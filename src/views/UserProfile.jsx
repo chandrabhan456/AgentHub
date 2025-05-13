@@ -6,7 +6,7 @@ import { CgProfile } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
-  const {  login1, setlogin1, currentMode, handleClick,setIsClicked, initialState } = useStateContext();
+  const {gdpr,setGdpr, documentation,setDocumentation,configuration,setConfiguration,home,setHome,  login1, setlogin1, currentMode, handleClick,setIsClicked, initialState } = useStateContext();
   const navigate = useNavigate();
 
   // State to track if the user profile is open or closed
@@ -18,6 +18,10 @@ const UserProfile = () => {
   // Function to handle logout
   function handleLogout() {
     handleClick(initialState);
+      setGdpr(false)
+   
+    setConfiguration(false)
+    setDocumentation(false)
     setlogin1(false);
     localStorage.clear();
   
