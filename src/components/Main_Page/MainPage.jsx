@@ -1,16 +1,16 @@
 import React,{useState} from "react";
 import "./MainPage.css"; 
 import "./container.css";
-import "../App.css";
-import avatar from "../data/gdpr.jpg";
-import CAG from "../data/CAG.png";
-import MEMGPT from "../data/MEMGPT.png";
-import Agile from "../data/Agile.png";
-import agentimg from '../data/Agent.png';
+
+import avatar from "../../data/gdpr.jpg";
+import CAG from "../../data/CAG.png";
+import MEMGPT from "../../data/MEMGPT.png";
+import Agile from "../../data/Agile.png";
+import agentimg from '../../data/Agent.png';
 import { useNavigate } from 'react-router-dom'
 import { HiOutlineChevronRight } from "react-icons/hi";
 import { HiOutlineChevronLeft } from "react-icons/hi";
-import { useStateContext } from '../contexts/ContextProvider';
+import { useStateContext } from '../../contexts/ContextProvider';
 const Container = ({ logo, name, description, tags, url }) => {
   return (
     <div

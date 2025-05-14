@@ -49,20 +49,20 @@ const Navbar = () => {
         (mainPage) ? 'right-5 w-16' : 'right-80 w-72'
       } top-1.5`}> 
       {(gdpr) && <><div
-        className={`text-2xl cursor-pointer flex ${home ? 'text-blue-500' : 'text-gray-800'}`}
+        className={`text-2xl cursor-pointer flex ${home ? 'text-grey-800 font-semibold' : 'text-gray-800'}`}
         onClick={() =>  {setHome(true);setConfiguration(false);setDocumentation(false); navigate('/gdpr')  }}      >
           <IoHomeOutline className="inline-block mt-1 mr-1" />
         Home
       </div>
       <div
-        className={`text-2xl ml-4 cursor-pointer flex ${configuration ? 'text-blue-500' : 'text-gray-800'}`}
+        className={`text-2xl ml-4 cursor-pointer flex ${configuration ? 'text-grey-800 font-semibold' : 'text-gray-800'}`}
         onClick={() =>  {setHome(false);setConfiguration(true);setDocumentation(false); navigate('/admin') }}
       >
           <GrConfigure className="inline-block mt-1 mr-1" />
         Configuration
       </div>
       <div
-        className={`text-2xl ml-4 cursor-pointer flex ${documentation ? 'text-blue-500' : 'text-gray-800'}`}
+        className={`text-2xl ml-4 cursor-pointer flex ${documentation ? 'text-grey-800 font-semibold' : 'text-gray-800'}`}
         onClick={() =>  {setHome(false);setConfiguration(false);setDocumentation(true);navigate('/documentation') }}      >
         <HiOutlineDocumentSearch className="inline-block text-3xl  mr-1" />
         Documentation

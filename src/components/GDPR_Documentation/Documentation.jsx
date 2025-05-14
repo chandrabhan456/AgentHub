@@ -50,12 +50,12 @@ function Documentation() {
 </div>
 
         <div className="nav">
-          <a href="#">
+          <a href="#" className='text-blue-400'>
             <img
               src="https://img.icons8.com/ios-filled/16/000000/document.png"
               alt="Document Icon"
             />
-            Documentation
+           <p className='text-blue-400'>Documentation</p> 
           </a>
           <a href="#">
             <img
@@ -82,7 +82,7 @@ function Documentation() {
 
         </div>
       </div>
-      <div className='flex'>
+      <div className='flex mt-5'>
         {/* Left: Documentation Content */}
         <div className="w-[70%] p-6 overflow-y-scroll" style={{ height: '600px' }}>
           {topics.map(({ id, title }) => (

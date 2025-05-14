@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
-import { useStateContext } from "../contexts/ContextProvider";
+import { useStateContext } from "../../contexts/ContextProvider";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { FaRegCircle, FaCheckCircle } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
