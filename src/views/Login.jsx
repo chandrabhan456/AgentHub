@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import { emailValidator, passwordValidator } from '../components/regexValidators';
+import { emailValidator, passwordValidator } from './regexValidators';
 import {Navigate, useNavigate} from "react-router-dom"
 import { useStateContext } from "../contexts/ContextProvider";
 import "./Login.css";
