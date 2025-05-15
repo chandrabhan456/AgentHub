@@ -25,7 +25,34 @@ const memgptButtonLabels = ['AI Models', 'Machine Learning', 'Neural Networks', 
 const Documentation = () =>  {
   const [activeId, setActiveId] = useState('');
     const {selectedAgent } = useStateContext();
-    
+    const [readme,setReadme] = useState(true)
+    const [backend,setBackend] = useState(false)
+    const [storage1,setStorage1] = useState(false)
+     const [frontend,setFrontend] = useState(false)
+     const handleDocumentationClick = () => {
+    setReadme(true)
+    setBackend(false)
+    setStorage1(false)
+     setFrontend(false)
+  };
+    const handleBackendClick = () => {
+    setReadme(false)
+    setBackend(true)
+    setStorage1(false)
+     setFrontend(false)
+  };
+   const handleStorageClick = () => {
+    setReadme(false)
+    setBackend(false)
+    setStorage1(true)
+    setFrontend(false)
+  };
+   const handleFrontendClick = () => {
+    setReadme(false)
+    setBackend(false)
+    setStorage1(false)
+    setFrontend(true)
+  };
   const contentRefs = useRef({});
   
   const topics = selectedAgent === 'gdpr' ? gdprTopics : memgptTopics;
@@ -104,13 +131,14 @@ const Documentation = () =>  {
           ))}
         </div>
         <div className="nav gap-4">
-          <span className='text-blue-400'>📄 Documentation</span>
+          <span className={`cursor-pointer ${readme ? 'text-blue-400' : ''}`}onClick={handleDocumentationClick}>📄 Documentation</span>
           <span>ℹ️ Information</span>
-          <span>🖥️ Front-end</span>
-          <span>🖥️ Back-end</span>
+          <span  className={`cursor-pointer ${frontend ? 'text-blue-400' : ''}`} onClick={handleFrontendClick}>🖥️ Front-end</span>
+          <span className={`cursor-pointer ${backend ? 'text-blue-400' : ''}`} onClick={handleBackendClick}>🖥️ Back-end</span>
+             <span className={`cursor-pointer ${storage1 ? 'text-blue-400' : ''}`} onClick={handleStorageClick}>💾 Storage</span>
         </div>
       </div>
-      <div className='flex mt-5'>
+     {readme &&  <div className='flex mt-5'>
         <div className="w-[70%] p-6 overflow-y-scroll" style={{ height: '600px' }}>
           {topics.map(({ id, title }) => (
             <div
@@ -143,6 +171,130 @@ const Documentation = () =>  {
           </ul>
         </div>
       </div>
+}
+{backend && <>
+<div class="flex items-center border-b py-4 ml-10">
+  <div class="flex-shrink-0">
+    <div class="flex items-center justify-center w-18 h-14 bg-black border-r-2 rounded-lg">
+     
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-18 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8H6a2 2 0 01-2-2V6a2 2 0 012-2h8l4 4v10a2 2 0 01-2 2z" />
+      </svg>
+    </div>
+  </div>
+  <div class="ml-4">
+    <p class="text-lg font-semibold">Python==13.1.0</p>
+    <p class="text-gray-500">Python==13.1.0</p>
+  </div>
+</div>
+
+<div class="flex items-center border-b py-4 ml-10">
+  <div class="flex-shrink-0">
+    <div class="flex items-center justify-center w-18 h-14 bg-black border-b-2 rounded-lg">
+     
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-18 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8H6a2 2 0 01-2-2V6a2 2 0 012-2h8l4 4v10a2 2 0 01-2 2z" />
+      </svg>
+    </div>
+  </div>
+  <div class="ml-4">
+    <p class="text-lg font-semibold">Flask==0.7.0</p>
+    <p class="text-gray-500">Flask==0.7.0</p>
+  </div>
+</div>
+<div class="flex items-center border-b py-4 ml-10">
+  <div class="flex-shrink-0">
+    <div class="flex items-center justify-center w-18 h-14 bg-black border-b-2 rounded-lg">
+     
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-18 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8H6a2 2 0 01-2-2V6a2 2 0 012-2h8l4 4v10a2 2 0 01-2 2z" />
+      </svg>
+    </div>
+  </div>
+  <div class="ml-4">
+    <p class="text-lg font-semibold">Transformer==0.7.0</p>
+    <p class="text-gray-500">Transformer==0.7.0</p>
+  </div>
+</div>
+<div class="flex items-center border-b py-4 ml-10">
+  <div class="flex-shrink-0">
+    <div class="flex items-center justify-center w-18 h-14 bg-black border-b-2 rounded-lg">
+     
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-18 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8H6a2 2 0 01-2-2V6a2 2 0 012-2h8l4 4v10a2 2 0 01-2 2z" />
+      </svg>
+    </div>
+  </div>
+  <div class="ml-4">
+    <p class="text-lg font-semibold">Langchain==0.7.0</p>
+    <p class="text-gray-500">Langchain==0.7.0</p>
+  </div>
+</div>
+
+</>
+
+}
+{storage1 && <>
+<div className="flex witems-center border-b border-gray-300 p-4 rounded shadow-sm ml-10 mt-4">
+  <div className="mr-4">
+    <div
+      className="w-10 h-10 bg-gray-300 rounded"
+      style={{
+        backgroundImage: "url('https://www.sqlite.org/images/sqlite370_banner.gif')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    ></div>
+  </div>
+  <div>
+    <h3 className="text-lg font-bold mb-1">SQLite Storage</h3>
+  <p className="text-sm text-gray-600" style={{ maxWidth: '90%' }}>
+  SQLite is a software library that provides a relational database management system. It is self-contained, serverless, and requires minimal configuration, making it ideal for embedded applications and small-scale storage solutions.
+</p>
+
+  </div>
+</div>
+
+</>}
+{frontend && <>
+<div className="flex items-center border-b border-gray-300 p-4 rounded shadow-sm ml-10 mt-4">
+  <div className="mr-4">
+    <div
+      className="w-14 h-12 bg-white rounded"
+      style={{
+        backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg')", // React icon URL
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    ></div>
+  </div>
+  <div>
+    <h3 className="text-lg font-bold mb-1">React</h3>
+    <p className="text-sm text-gray-600" style={{ maxWidth: '100%' }}>
+      React is a JavaScript library for building user interfaces. It allows developers to create large web applications that can update and render efficiently in response to data changes.
+    </p>
+  </div>
+</div>
+<div className="flex items-center border-b border-gray-300 p-4 rounded shadow-sm ml-12 mt-4">
+  <div className="mr-5">
+    <div
+      className="w-10 h-10 bg-white rounded"
+      style={{
+        backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg')", // Tailwind CSS icon URL
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    ></div>
+  </div>
+  <div className=''>
+    <h3 className="text-lg font-bold mb-1">Tailwind CSS</h3>
+    <p className="text-sm text-gray-600" style={{ maxWidth: '100%' }}>
+      Tailwind CSS is a utility-first CSS framework for rapidly building custom designs. It provides low-level utility classes that can be composed to build complex user interfaces directly in your markup.
+    </p>
+  </div>
+</div>
+
+</>}
     </div>
   );
 }
