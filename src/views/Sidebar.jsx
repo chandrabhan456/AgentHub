@@ -2,12 +2,13 @@ import {React,useState} from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useStateContext } from '../contexts/ContextProvider';
 import "./Sidebar.css"
-import azureimg from '../data/gdpr.jpg';
+import gdprimg from '../data/gdpr.jpg';
 import { useNavigate, useLocation } from 'react-router-dom';
 import agentimg from '../data/Agent.png';
+import MEMGPT from "../data/MEMGPT.png";
 const Sidebar = () => {
   console.log("SSS")
-  const {gdpr,mainPage,documentation,setDocumentation,configuration,setConfiguration,home,setHome } = useStateContext();
+  const {gdpr,mainPage,documentation,configuration,home,selectedAgent } = useStateContext();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -57,17 +58,27 @@ const Sidebar = () => {
     </>
 )}
 
-       {gdpr && <div style={{ textAlign: 'center' }}>
+       {selectedAgent === 'gdpr' && <div style={{ textAlign: 'center' }}>
         <img
           
-          src={azureimg}
+          src={gdprimg}
           alt="nttlogo"
         
         style={{ width: '75%', height: '145px', display: 'block', margin: '0 auto' }} 
         
       />
     </div>}
-    {(gdpr&&home) && 
+      {selectedAgent === 'memgpt' && <div style={{ textAlign: 'center' }}>
+        <img
+          
+          src={MEMGPT}
+          alt="nttlogo"
+        
+        style={{ width: '75%', height: '145px', display: 'block', margin: '0 auto' }} 
+        
+      />
+    </div>}
+    {(selectedAgent === 'gdpr' &&home) && 
           <nav style={{ marginTop: '10px', backgroundColor: '#f8f9fa', padding: '6px',  }}>
         <ul style={{ listStyleType: 'none', padding: '0', margin: '0', color: '#333', textAlign: 'left' }}>
         <li style={{ fontSize: '1.25rem', margin: '8px 0' }}>
@@ -101,6 +112,22 @@ const Sidebar = () => {
           </button>
         </li>
         </ul>
+      </nav>
+}
+ {(selectedAgent === 'memgpt' &&home) && 
+          <nav style={{ marginTop: '10px', backgroundColor: '#f8f9fa', padding: '6px',  }}>
+        <ul style={{ listStyleType: 'none', padding: '0', margin: '0', color: '#333', textAlign: 'left' }}>
+        <li style={{ fontSize: '1.25rem', margin: '8px 0' }}>
+          <button onClick={() => handleNavigation('/memgpt')} style={buttonStyles('/memgpt')}>
+          🤖 MEMGPT Q&A
+          </button>
+        </li>
+         <li style={{ fontSize: '1.25rem', margin: '8px 0' }}>
+          <button onClick={() => handleNavigation('/data-masking')} style={buttonStyles('/data-masking')}>
+          🔒 Data Masking
+          </button>
+        </li>
+         </ul>
       </nav>
 }
 {configuration && 

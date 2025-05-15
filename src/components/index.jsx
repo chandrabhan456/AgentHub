@@ -11,3 +11,4 @@ export {default as Registration} from './GDPR_Config/Registration'
 export {default as Pass} from './GDPR_Config/Password_Change'
 export {default as MainPage} from './Main_Page/MainPage'
 
+export {default as MEMGPT} from './MEMGPT_Home/Memgpt_QA'

@@ -44,13 +44,22 @@ const MainPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [InputText, setInputText] = useState("");
   const navigate = useNavigate();
-   const {setGdpr,setMainPage,home,setHome ,login1,setlogin1,currentMode, setCurrentMode, } = useStateContext();
+   const {setSelectedAgent,setGdpr,setMainPage,setHome  } = useStateContext();
   
   const handleNavigation = (path) => {
     
     setMainPage(false)
-    setGdpr(true)
+    if(path === '/gdpr'){
+      setSelectedAgent('gdpr')
+      setGdpr(true)
     setHome(true)
+    }
+    if(path === '/memgpt')
+    {
+        setSelectedAgent('memgpt')
+        setGdpr(true)
+    setHome(true)
+    }
     navigate(path);
   };
   const data = [
@@ -66,7 +75,7 @@ const MainPage = () => {
       name: "MEMGPT",
       description: "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
       tags: ["Agent", "1.0", "Information Retention"],
-       path: "/gdpr"
+       path: "/memgpt"
     },
     {
       logo: CAG,

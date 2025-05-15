@@ -3,13 +3,13 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar,  Sidebar} from './views';
 import { useStateContext } from './contexts/ContextProvider';
-import {MainPage,GDPR,Data_Mask,Compliance,Rectification,RFP,DSAR,Admin1,Documentation,Registration,Pass } from './components'
+import {MEMGPT,MainPage,GDPR,Data_Mask,Compliance,Rectification,RFP,DSAR,Admin1,Documentation,Registration,Pass } from './components'
 import nttlogo from './data/nttdatalogo.svg';
 import Login from "./views/Login";
 const App = () => {
   localStorage.setItem('OpenAI_Configuration',true)
   localStorage.removeItem("login");
-  const {gdpr,mainPage,documentation,setDocumentation,configuration,setConfiguration,home,setHome ,login1,setlogin1,currentMode, setCurrentMode, } = useStateContext();
+  const {selectedAgent,gdpr,mainPage,documentation,setDocumentation,configuration,setConfiguration,home,setHome ,login1,setlogin1,currentMode, setCurrentMode, } = useStateContext();
   console.log("chandu",currentMode)
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
   useEffect(() => {
@@ -50,21 +50,27 @@ const App = () => {
       
         <Route path="/" element={<MainPage />} />
       </>)}
-    {/* Home routes */}
-    {gdpr && (
+    {/* GDPR routes */}
+    {selectedAgent === 'gdpr' && (
       <>
         <Route path="/gdpr" element={<GDPR />} />
         <Route path="/gdpr" element={<GDPR />} />
         <Route path="/compliance" element={<Compliance />} />
         <Route path="/data-masking" element={<Data_Mask />} />
-      </>
-    )}
-
-    {/* Common routes available regardless of flags */}
-    <Route path="/rfp_compliance" element={<RFP />} />
+         <Route path="/rfp_compliance" element={<RFP />} />
     <Route path="/rectification" element={<Rectification />} />
     <Route path="/dsar" element={<DSAR />} />
 
+      </>
+    )}
+    
+    {/* MEMGPT routes */}
+    {selectedAgent === 'memgpt' && (
+      <>
+        <Route path="/memgpt" element={<MEMGPT />} />
+        </>)}
+    {/* Common routes available regardless of flags */}
+   
     {/* Configuration routes */}
     {configuration && (
       <>

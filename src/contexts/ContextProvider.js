@@ -29,7 +29,7 @@ export const ContextProvider = ({ children }) => {
   const [themeSettings, setThemeSettings] = useState(false);
   const [mainPage, setMainPage] = useState(true)
   const [login1, setlogin1] = useState(initialLoginState);
-  const [sidebarCurrentStep,setSidebarCurrentStep] = useState(0)
+  const [selectedAgent,setSelectedAgent] = useState('')
   useEffect(() => {
     localStorage.setItem('login', login1);
   }, [login1]);
@@ -47,7 +47,7 @@ export const ContextProvider = ({ children }) => {
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <StateContext.Provider value={{gdpr,setGdpr,documentation,setDocumentation,configuration,setConfiguration,currentMode, setCurrentMode,home,setHome,login1,setlogin1,mainPage,setMainPage,activeMenu,setActiveMenu,handleClick,setIsClicked,isClicked,initialState,setCurrentColor}}>
+    <StateContext.Provider value={{selectedAgent,setSelectedAgent,gdpr,setGdpr,documentation,setDocumentation,configuration,setConfiguration,currentMode, setCurrentMode,home,setHome,login1,setlogin1,mainPage,setMainPage,activeMenu,setActiveMenu,handleClick,setIsClicked,isClicked,initialState,setCurrentColor}}>
       {children}
     </StateContext.Provider>
   );

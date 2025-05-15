@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Documentation.css';
-
-const topics = [
+import { useStateContext } from '../../contexts/ContextProvider';
+const gdprTopics = [
   { id: 'intro', title: '1. Introduction to GDPR' },
   { id: 'principles', title: '2. Key Principles' },
   { id: 'rights', title: '3. Rights of Data Subjects' },
@@ -11,11 +11,29 @@ const topics = [
   { id: 'fines', title: '7. Fines and Penalties' },
 ];
 
-function Documentation() {
-  const [activeId, setActiveId] = useState('intro');
-  const contentRefs = useRef({});
+const memgptTopics = [
+  { id: 'overview', title: '1. Overview of MEMGPT' },
+  { id: 'architecture', title: '2. Architecture' },
+  { id: 'applications', title: '3. Applications' },
+  { id: 'benefits', title: '4. Benefits' },
+  { id: 'limitations', title: '5. Limitations' },
+];
 
+const gdprButtonLabels = ['Compliance', 'Data Protection', 'Privacy Officer', 'Regulation'];
+const memgptButtonLabels = ['AI Models', 'Machine Learning', 'Neural Networks', 'Innovation'];
+
+const Documentation = () =>  {
+  const [activeId, setActiveId] = useState('');
+    const {selectedAgent } = useStateContext();
+    
+  const contentRefs = useRef({});
+  
+  const topics = selectedAgent === 'gdpr' ? gdprTopics : memgptTopics;
+  const buttonLabels = selectedAgent === 'gdpr' ? gdprButtonLabels : memgptButtonLabels;
+  
   useEffect(() => {
+    setActiveId(topics[0]?.id || '');
+
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -32,58 +50,67 @@ function Documentation() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [topics]);
 
   const scrollToSection = id => {
     contentRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const generateContent = topicId => {
+    if (selectedAgent === 'gdpr') {
+      switch (topicId) {
+        case 'intro':
+          return 'The General Data Protection Regulation (GDPR) is a legal framework...';
+        case 'principles':
+          return 'GDPR is founded on key principles: lawfulness, fairness, transparency...';
+        case 'rights':
+          return 'Individuals have rights including access, rectification, erasure...';
+        case 'controllers':
+          return 'Data controllers determine the purposes and means of processing...';
+        case 'processors':
+          return 'Processors handle data on behalf of controllers...';
+        case 'security':
+          return 'Organizations must implement technical and organizational measures...';
+        case 'fines':
+          return 'GDPR imposes two levels of fines: up to €10 million or 2% of annual...';
+        default:
+          return 'Content coming soon...';
+      }
+    } else {
+      switch (topicId) {
+        case 'overview':
+          return 'MEMGPT is a powerful AI model designed to process and understand...';
+        case 'architecture':
+          return 'The architecture of MEMGPT is based on advanced neural networks...';
+        case 'applications':
+          return 'MEMGPT has applications in various fields, including language processing...';
+        case 'benefits':
+          return 'The benefits of MEMGPT include improved accuracy and efficiency...';
+        case 'limitations':
+          return 'Despite its strengths, MEMGPT has limitations such as...';
+        default:
+          return 'Content coming soon...';
+      }
+    }
+  };
+
   return (
     <div className="flex flex-col bg-white">
       <div className="container1 mt-10">
-        <p className='text-4xl font-bold '>GDPR Agent</p>
-       <div className="button-group mt-5">
-  <button>Compliance</button>
-  <button>Data Protection</button>
-  <button>Privacy Officer</button>
-  <button>Regulation</button>
-</div>
-
-        <div className="nav">
-          <a href="#" className='text-blue-400'>
-            <img
-              src="https://img.icons8.com/ios-filled/16/000000/document.png"
-              alt="Document Icon"
-            />
-           <p className='text-blue-400'>Documentation</p> 
-          </a>
-          <a href="#">
-            <img
-              src="https://img.icons8.com/ios-filled/16/000000/info.png"
-              alt="Info Icon"
-            />
-            Information
-          </a>
-         <a href="#">
-  <img
-    src="https://img.icons8.com/ios-filled/16/000000/frontend.png"
-   
-  />
-  Front-end
-</a>
-<a href="#">
-  <img
-    src="https://img.icons8.com/ios-filled/16/000000/backend.png"
-    
-  />
-  Back-end
-</a>
-
-
+        <p className='text-4xl font-bold '>{selectedAgent === 'gdpr' ? 'GDPR Agent' : 'MEMGPT Agent'}</p>
+        <div className="button-group mt-5">
+          {buttonLabels.map((label, index) => (
+            <button key={index}>{label}</button>
+          ))}
+        </div>
+        <div className="nav gap-4">
+          <span className='text-blue-400'>📄 Documentation</span>
+          <span>ℹ️ Information</span>
+          <span>🖥️ Front-end</span>
+          <span>🖥️ Back-end</span>
         </div>
       </div>
       <div className='flex mt-5'>
-        {/* Left: Documentation Content */}
         <div className="w-[70%] p-6 overflow-y-scroll" style={{ height: '600px' }}>
           {topics.map(({ id, title }) => (
             <div
@@ -94,13 +121,11 @@ function Documentation() {
             >
               <h2 className="text-2xl font-bold mb-4">{title}</h2>
               <p className="text-gray-700 leading-relaxed">
-                {generateDummyContent(id)}
+                {generateContent(id)}
               </p>
             </div>
           ))}
         </div>
-
-        {/* Right: Topics List */}
         <div className="w-[30%] p-6 border-l overflow-y-auto">
           <h3 className="text-xl font-semibold mb-4">Topics</h3>
           <ul>
@@ -120,27 +145,6 @@ function Documentation() {
       </div>
     </div>
   );
-}
-
-function generateDummyContent(topicId) {
-  switch (topicId) {
-    case 'intro':
-      return 'The General Data Protection Regulation (GDPR) is a legal framework that sets guidelines for the collection and processing of personal data of individuals within the European Union (EU). It aims to give control to individuals over their personal data and simplify the regulatory environment.';
-    case 'principles':
-      return 'GDPR is founded on key principles: lawfulness, fairness, transparency, purpose limitation, data minimization, accuracy, storage limitation, integrity, confidentiality, and accountability.';
-    case 'rights':
-      return 'Individuals have rights including access, rectification, erasure (right to be forgotten), restriction of processing, data portability, objection, and rights regarding automated decision making and profiling.';
-    case 'controllers':
-      return 'Data controllers determine the purposes and means of processing personal data. They must ensure GDPR compliance, maintain documentation, and conduct Data Protection Impact Assessments (DPIAs) when required.';
-    case 'processors':
-      return 'Processors handle data on behalf of controllers. They must ensure data security, assist controllers in meeting obligations, and can be held liable for non-compliance under GDPR.';
-    case 'security':
-      return 'Organizations must implement technical and organizational measures to ensure data security. Breaches must be reported within 72 hours to supervisory authorities and, in some cases, to the data subjects.';
-    case 'fines':
-      return 'GDPR imposes two levels of fines: up to €10 million or 2% of annual global turnover, and up to €20 million or 4% of annual global turnover, depending on the severity of the violation.';
-    default:
-      return 'Content coming soon...';
-  }
 }
 
 export default Documentation;
