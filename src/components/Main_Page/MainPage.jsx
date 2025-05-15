@@ -1,21 +1,20 @@
-import React,{useState} from "react";
-import "./MainPage.css"; 
+import React, { useState } from "react";
+import "./MainPage.css";
 import "./container.css";
 
 import avatar from "../../data/gdpr.jpg";
 import CAG from "../../data/CAG.png";
 import MEMGPT from "../../data/MEMGPT.png";
 import Agile from "../../data/Agile.png";
-import agentimg from '../../data/Agent.png';
-import { useNavigate } from 'react-router-dom'
+import agentimg from "../../data/Agent.png";
+import { useNavigate } from "react-router-dom";
 import { HiOutlineChevronRight } from "react-icons/hi";
 import { HiOutlineChevronLeft } from "react-icons/hi";
-import { useStateContext } from '../../contexts/ContextProvider';
+import { useStateContext } from "../../contexts/ContextProvider";
 const Container = ({ logo, name, description, tags, url }) => {
   return (
     <div
       className="container"
-   
       style={{ cursor: "pointer" }} // Indicate clickable containers
     >
       <div className="container-content">
@@ -44,21 +43,19 @@ const MainPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [InputText, setInputText] = useState("");
   const navigate = useNavigate();
-   const {setSelectedAgent,setGdpr,setMainPage,setHome  } = useStateContext();
-  
+  const { setSelectedAgent, setGdpr, setMainPage, setHome } = useStateContext();
+
   const handleNavigation = (path) => {
-    
-    setMainPage(false)
-    if(path === '/gdpr'){
-      setSelectedAgent('gdpr')
-      setGdpr(true)
-    setHome(true)
+    setMainPage(false);
+    if (path === "/gdpr") {
+      setSelectedAgent("gdpr");
+      setGdpr(true);
+      setHome(true);
     }
-    if(path === '/memgpt')
-    {
-        setSelectedAgent('memgpt')
-        setGdpr(true)
-    setHome(true)
+    if (path === "/memgpt") {
+      setSelectedAgent("memgpt");
+      setGdpr(true);
+      setHome(true);
     }
     navigate(path);
   };
@@ -66,50 +63,53 @@ const MainPage = () => {
     {
       logo: avatar,
       name: "GDPR",
-      description: " GDPR Agent is a tool that helps organizations manage and ensure compliance with the EU's General Data Protection Regulation.",
+      description:
+        " GDPR Agent is a tool that helps organizations manage and ensure compliance with the EU's General Data Protection Regulation.",
       tags: ["Agent", "1.0", "Data Protection"],
-        path: "/gdpr"
+      path: "/gdpr",
     },
     {
       logo: MEMGPT,
       name: "MEMGPT",
-      description: "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
+      description:
+        "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
       tags: ["Agent", "1.0", "Information Retention"],
-       path: "/memgpt"
+      path: "/memgpt",
     },
     {
       logo: CAG,
       name: "CAG",
-      description: "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
+      description:
+        "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
       tags: ["Agent", "1.0", "Public Audit"],
-      url: "http://localhost:8503"
+      url: "http://localhost:8503",
     },
-     {
+    {
       logo: Agile,
       name: "Agile Agent",
-      description: "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
+      description:
+        "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
       tags: ["Agent", "1.0", "Information Retention"],
-       path: "/gdpr"
+      path: "/gdpr",
     },
     {
       logo: agentimg,
       name: "Agent5",
-      description: "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
+      description:
+        "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
       tags: ["Agent", "1.0", "Public Audit"],
-      url: "http://localhost:8503"
+      url: "http://localhost:8503",
     },
-   
-  
   ];
-  
+
   const ordersData3 = data;
   const recordsPerPage = 8;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
- 
+
   const inputHandler = (e) => {
     setInputText(e.target.value.toLowerCase());
-    console.log("Vidhi",e.target.value.toLowerCase())
+    console.log("Vidhi", e.target.value.toLowerCase());
   };
   const records1 = ordersData3.filter((el) => {
     if (el === "") {
@@ -124,62 +124,61 @@ const MainPage = () => {
   });
   const records = records1.slice(firstIndex, lastIndex);
   return (
-   <div className="h-screen bg-white mt-0 w-full">
-  <div className=" items-center justify-center h-full">
-    <div className="flex mt-16"> 
-  <div className="search-bar-container mt-2">
-    <input
-      type="text"
-      placeholder="Search..."
-      className="search-bar"
-      onChange={inputHandler}
-    />
-  </div>
-  <div className="dropdown-container mt-2">
-    <select className="dropdown">
-      <option value="">Select an option</option>
-      <option value="option1">Latest</option>
-      <option value="option2">Most Usoed</option>
-      <option value="option3">Old</option>
-    </select>
-  </div>
-</div>
-
-      <div className="main-page">
-      <div className="container-grid">
-        {records.map((item, index) => (
-          <div key={index} onClick={() => handleNavigation(item.path)} style={{ cursor: 'pointer' }}>
-          <Container
-            logo={item.logo}
-            name={item.name}
-            description={item.description}
-            tags={item.tags}
-          />
+    <div className="h-screen bg-white mt-0 w-full">
+      <div className=" items-center justify-center h-full">
+        <div className="flex mt-16">
+          <div className="search-bar-container mt-2">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="search-bar"
+              onChange={inputHandler}
+            />
           </div>
-        ))}
-       
-      </div>
-     
-     
-  <div className="flex pagination gap-3" style={{marginLeft:'15%'}}>
-    <div className=" mt-5" >
-      <a href="#" className="text-blue-400" onClick={prePage}>
-        <HiOutlineChevronLeft />
-      </a>
-    </div>
-  <p className="mt-5">1</p>
-    <div className=" mt-5">
-      <a href="#" className="text-blue-400" onClick={nextPage}>
-        <HiOutlineChevronRight />
-      </a>
-    </div>
-  </div>
-</div>
+          <div className="dropdown-container mt-2">
+            <select className="dropdown">
+              <option value="">Select an option</option>
+              <option value="option1">Latest</option>
+              <option value="option2">Most Usoed</option>
+              <option value="option3">Old</option>
+            </select>
+          </div>
+        </div>
 
-</div>
+        <div className="main-page">
+          <div className="container-grid">
+            {records.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => handleNavigation(item.path)}
+                style={{ cursor: "pointer" }}
+              >
+                <Container
+                  logo={item.logo}
+                  name={item.name}
+                  description={item.description}
+                  tags={item.tags}
+                />
+              </div>
+            ))}
+          </div>
 
+          <div className="flex pagination gap-3" style={{ marginLeft: "15%" }}>
+            <div className=" mt-5">
+              <a href="#" className="text-blue-400" onClick={prePage}>
+                <HiOutlineChevronLeft />
+              </a>
+            </div>
+            <p className="mt-5">1</p>
+            <div className=" mt-5">
+              <a href="#" className="text-blue-400" onClick={nextPage}>
+                <HiOutlineChevronRight />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-   
+    </div>
   );
   function prePage() {
     if (currentPage != firstIndex + 1) {
