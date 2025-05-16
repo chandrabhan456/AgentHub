@@ -49,7 +49,7 @@
 
 .search-bar-container {
 
-  flex-basis: 68%;
+  flex-basis: 67.5%;
   margin-left: 15px; /* Small margin for spacing */
 }
 
@@ -62,7 +62,7 @@
 }
 
 .dropdown-container {
-  flex-basis: 23%;
+  flex-basis: 21%;
 }
 
 .dropdown {

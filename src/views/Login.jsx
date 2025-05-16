@@ -61,7 +61,7 @@ const Login = () => {
         name="email"
         placeholder="Enter your username"
         onChange={handleChange}
-        className="text-input"
+        className="text-input1"
          autoComplete='current-password'
       />
     </div>
@@ -73,7 +73,7 @@ const Login = () => {
         name="password"
         placeholder="Enter your password"
         onChange={handleChange}
-        className="text-input"
+        className="text-input1"
         autoComplete='current-password'
         style={{ paddingRight: '30px' }} // Add padding to accommodate the icon
       />

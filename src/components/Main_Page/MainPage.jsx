@@ -126,8 +126,8 @@ const MainPage = () => {
   return (
     <div className="h-screen bg-white mt-0 w-full">
       <div className=" items-center justify-center h-full">
-        <div className="flex mt-16">
-          <div className="search-bar-container mt-2">
+        <div className="flex mt-16 gap-4 items-center">
+          <div className="search-bar-container mt-2 h-12">
             <input
               type="text"
               placeholder="Search..."
@@ -135,7 +135,7 @@ const MainPage = () => {
               onChange={inputHandler}
             />
           </div>
-          <div className="dropdown-container mt-2">
+          <div className="dropdown-container mt-2 h-10" >
             <select className="dropdown">
               <option value="">Select an option</option>
               <option value="option1">Latest</option>

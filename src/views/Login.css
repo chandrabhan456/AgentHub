@@ -28,14 +28,16 @@ body, html {
   margin-bottom: 15px;
 }
 
-.text-input {
+.text-input1 {
   width: 100%;
   padding: 10px;
- 
   border-radius: 4px;
   font-size: 16px;
-  background-color:#fff;
+  background-color: #fff;
+  box-sizing: border-box;
+  margin: 0;
 }
+
 
 .text-input::placeholder {
   color: #888;

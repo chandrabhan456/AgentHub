@@ -1,0 +1,162 @@
+.input-wrapper {
+   
+    height: 2.5rem;
+    border: none;
+    border-radius: 10px;
+    padding: 0 15px;
+    border: 1px solid #d3d3d3;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    margin-top:40px;
+    box-shadow: none;
+  }
+  
+  input {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    font-size: 1.25rem;
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 4px;
+  }
+  table{
+    margin-left: 37px;
+    width:60%;
+    margin-top: 30px;
+  }
+  #tableheader{
+   
+    
+  }
+  #tableheader:first-child #headercell:first-child{
+    border-top-left-radius: 10px;
+  }
+  
+  #tableheader:first-child #headercell:last-child{
+    border-top-right-radius: 10px;
+  }
+  #headercell:first-child{
+    
+   width:10%;
+  }
+  #headercell:nth-child(2){
+    
+    width:13%;
+   } #headercell:nth-child(3){
+    
+    width:14%;
+   }
+   #headercell:nth-child(4){
+    
+    width:18%;
+   }
+   #headercell:nth-child(5){
+    
+    width:15%;
+   }
+   #headercell:nth-child(6){
+    
+    width:15%;
+   }
+   #tableheader:first-child #headercelle:first-child{
+    border-top-left-radius: 10px;
+  }
+  
+  #tableheader:first-child #headercell:last-child{
+    border-top-right-radius: 10px;
+  }
+  #headercelle:first-child{
+    
+   width:18%;
+  }
+  #headercell:nth-child(2){
+    
+    width:13%;
+   } #headercell:nth-child(3){
+    
+    width:14%;
+   }
+   #headercell:nth-child(4){
+    
+    width:18%;
+   }
+   #headercell:nth-child(5){
+    
+    width:15%;
+   }
+   #headercell:nth-child(6){
+    
+    width:15%;
+   }
+   #tableheader:first-child #headercellc:first-child{
+    border-top-left-radius: 10px;
+  }
+  
+  #tableheader:first-child #headercell:last-child{
+    border-top-right-radius: 10px;
+  }
+  #headercellc:first-child{
+    
+   width:20%;
+  }
+  #headercellc:nth-child(2){
+    
+    width:17%;
+   } #headercellc:nth-child(3){
+    
+    width:18%;
+   }
+   #headercell:nth-child(4){
+    
+    width:18%;
+   }
+   #headercell:nth-child(5){
+    
+    width:15%;
+   }
+   #headercell:nth-child(6){
+    
+    width:15%;
+   }
+
+   tr:last-child td:first-child{
+    border-bottom-left-radius: 10px;
+  } 
+   tr:last-child td:last-child{
+    border-bottom-right-radius: 10px;
+  }
+  #editcell{
+    margin-left: 60px;
+    display: flex;
+    flex-direction: row;
+    color:orange
+    
+  }
+  #deletecell{
+    margin-left: 90px;
+    display: flex;
+    flex-direction: row;
+    margin-top: -25px;
+    color: #EE4E4E;
+  }
+  input:focus {
+    outline: none;
+
+  }
+  
+  #search-icon {
+    color: black;
+  }
+  #UpDown-icon{
+    
+    margin-left: 5px;
+    
+    
+  }
+  #UpDown-icon:hover{
+    color:white;
+    margin-left: 5px;
+  }
+  
