@@ -31,7 +31,20 @@ const memgptButtonLabels = [
   "Neural Networks",
   "Innovation",
 ];
+const cagAgentTopics = [
+  { id: "introduction", title: "1. Introduction to CAG Agent" },
+  { id: "components", title: "2. Core Components" },
+  { id: "useCases", title: "3. Use Cases" },
+  { id: "advantages", title: "4. Advantages" },
+  { id: "challenges", title: "5. Challenges" },
+];
 
+const cagAgentButtonLabels = [
+  "Automation",
+  "Data Processing",
+  "Integration",
+  "Scalability",
+];
 const Documentation = () => {
   const [activeId, setActiveId] = useState("");
   const { selectedAgent } = useStateContext();
@@ -63,11 +76,25 @@ const Documentation = () => {
     setStorage1(false);
     setFrontend(true);
   };
+     const agentName = selectedAgent === "gdpr" 
+  ? "GDPR Agent" 
+  : selectedAgent === "memgpt" 
+  ? "MEMGPT Agent" 
+  : "CAG Agent";
+
+console.log(agentName); // This will log the agent name based on the selected agent
+
   const contentRefs = useRef({});
 
-  const topics = selectedAgent === "gdpr" ? gdprTopics : memgptTopics;
-  const buttonLabels =
-    selectedAgent === "gdpr" ? gdprButtonLabels : memgptButtonLabels;
+ 
+const topics = selectedAgent === "gdpr" ? gdprTopics 
+               : selectedAgent === "memgpt" ? memgptTopics 
+               : cagAgentTopics;
+
+const buttonLabels = selectedAgent === "gdpr" ? gdprButtonLabels 
+                     : selectedAgent === "memgpt" ? memgptButtonLabels 
+                     : cagAgentButtonLabels;
+
 
   useEffect(() => {
     setActiveId(topics[0]?.id || "");
@@ -117,29 +144,44 @@ const Documentation = () => {
         default:
           return "Content coming soon...";
       }
-    } else {
-      switch (topicId) {
-        case "overview":
-          return "MEMGPT is a powerful AI model designed to process and understand...";
-        case "architecture":
-          return "The architecture of MEMGPT is based on advanced neural networks...";
-        case "applications":
-          return "MEMGPT has applications in various fields, including language processing...";
-        case "benefits":
-          return "The benefits of MEMGPT include improved accuracy and efficiency...";
-        case "limitations":
-          return "Despite its strengths, MEMGPT has limitations such as...";
-        default:
-          return "Content coming soon...";
-      }
+    } else if (selectedAgent === "memgpt") {
+    switch (topicId) {
+      case "overview":
+        return "MEMGPT is a powerful AI model designed to process and understand...";
+      case "architecture":
+        return "The architecture of MEMGPT is based on advanced neural networks...";
+      case "applications":
+        return "MEMGPT has applications in various fields, including language processing...";
+      case "benefits":
+        return "The benefits of MEMGPT include improved accuracy and efficiency...";
+      case "limitations":
+        return "Despite its strengths, MEMGPT has limitations such as...";
+      default:
+        return "Content coming soon...";
     }
+  } else if (selectedAgent === "cag") {
+    switch (topicId) {
+      case "introduction":
+        return "CAG Agent is a comprehensive solution for automating complex workflows...";
+      case "components":
+        return "The core components of CAG Agent include a robust processing engine...";
+      case "useCases":
+        return "CAG Agent can be utilized in numerous scenarios such as data integration...";
+      case "advantages":
+        return "Key advantages of CAG Agent include scalability, flexibility, and speed...";
+      case "challenges":
+        return "Challenges faced by CAG Agent include integration complexity and maintenance...";
+      default:
+        return "Content coming soon...";
+    }
+  }
   };
 
   return (
     <div className="flex flex-col bg-white">
       <div className="container1 mt-10">
         <p className="text-4xl font-bold ">
-          {selectedAgent === "gdpr" ? "GDPR Agent" : "MEMGPT Agent"}
+        {agentName}
         </p>
         <div className="button-group mt-5">
           {buttonLabels.map((label, index) => (

@@ -69,6 +69,9 @@ const MainPage = () => {
       setGdpr(true);
       setHome(true);
     }
+    else{
+      setMainPage(true)
+    }
     navigate(path);
   };
   const data = [
@@ -102,7 +105,7 @@ const MainPage = () => {
       description:
         "An agile agent rapidly adapts to changes, prioritizes collaboration, delivers iterative value, and continuously improves processes in dynamic environments.",
       tags: ["Agent", "1.0", "Collaboration"],
-      path: "/gdpr",
+      path:"/Agile"
     },
     {
       logo: agentimg,
@@ -110,7 +113,7 @@ const MainPage = () => {
       description:
         "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
       tags: ["Agent", "1.0", "Public Audit"],
-      path: "/gdpr",
+      path: "/agent5",
     },
   ];
 
