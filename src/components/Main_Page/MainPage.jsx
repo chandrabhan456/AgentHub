@@ -111,7 +111,7 @@ const MainPage = () => {
       logo: agentimg,
       name: "Agent5",
       description:
-        "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
+        "Agent5, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
       tags: ["Agent", "1.0", "Public Audit"],
       path: "/agent5",
     },
