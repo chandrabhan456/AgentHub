@@ -31,7 +31,13 @@ const Container = ({ logo, name, description, tags, url }) => {
           ))}
         </div>
         <div className="tag1">
-          <span>Demo</span>
+         {name === "GDPR" || name === "MEMGPT" || name === "CAG" ? (
+  <span className="bg-white border border-[#007BFF] rounded-md px-2 py-1 mt-2 text-xs ml-[2%] w-full max-w-[60px] text-center text-[#007bff]">Demo</span>
+
+    ) : (
+      <span className="bg-white border border-gray-300 rounded-md px-2 py-1 mt-2 text-xs ml-[2%] w-full max-w-[92px] text-center text-gray-400">Coming Soon</span>
+
+    )}
         </div>
       </div>
     </div>
@@ -47,6 +53,7 @@ const MainPage = () => {
 
   const handleNavigation = (path) => {
     setMainPage(false);
+   
     if (path === "/gdpr") {
       setSelectedAgent("gdpr");
       setGdpr(true);
@@ -54,6 +61,11 @@ const MainPage = () => {
     }
     if (path === "/memgpt") {
       setSelectedAgent("memgpt");
+      setGdpr(true);
+      setHome(true);
+    }
+     if (path === "/cag") {
+      setSelectedAgent("cag");
       setGdpr(true);
       setHome(true);
     }
@@ -82,14 +94,14 @@ const MainPage = () => {
       description:
         "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
       tags: ["Agent", "1.0", "Public Audit"],
-      url: "http://localhost:8503",
+      path: "/cag",
     },
     {
       logo: Agile,
       name: "Agile Agent",
       description:
-        "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
-      tags: ["Agent", "1.0", "Information Retention"],
+        "An agile agent rapidly adapts to changes, prioritizes collaboration, delivers iterative value, and continuously improves processes in dynamic environments.",
+      tags: ["Agent", "1.0", "Collaboration"],
       path: "/gdpr",
     },
     {
@@ -98,7 +110,7 @@ const MainPage = () => {
       description:
         "CAG, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
       tags: ["Agent", "1.0", "Public Audit"],
-      url: "http://localhost:8503",
+      path: "/gdpr",
     },
   ];
 

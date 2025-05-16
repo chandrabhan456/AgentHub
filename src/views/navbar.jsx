@@ -87,6 +87,9 @@ const Navbar = () => {
                   } else if (selectedAgent === "memgpt") {
                     navigate("/memgpt");
                   }
+                  else if (selectedAgent === "cag") {
+                    navigate("/cag");
+                  }
                 }}
               >
                 <IoHomeOutline className="inline-block mt-1 mr-1" />

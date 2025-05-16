@@ -3,7 +3,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar,  Sidebar} from './views';
 import { useStateContext } from './contexts/ContextProvider';
-import {MEMGPT,MainPage,GDPR,Data_Mask,Compliance,Rectification,RFP,DSAR,Admin1,Documentation,Registration,Pass } from './components'
+import {CAG,MEMGPT,MainPage,GDPR,Data_Mask,Compliance,Rectification,RFP,DSAR,Admin1,Documentation,Registration,Pass } from './components'
 import nttlogo from './data/nttdatalogo.svg';
 import Login from "./views/Login";
 const App = () => {
@@ -68,6 +68,11 @@ const App = () => {
     {selectedAgent === 'memgpt' && (
       <>
         <Route path="/memgpt" element={<MEMGPT />} />
+        </>)}
+         {/* MEMGPT routes */}
+    {selectedAgent === 'cag' && (
+      <>
+        <Route path="/cag" element={<CAG />} />
         </>)}
     {/* Common routes available regardless of flags */}
    

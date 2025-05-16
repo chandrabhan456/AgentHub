@@ -12,5 +12,7 @@ export {default as Pass} from './GDPR_Config/Password_Change'
 export {default as MainPage} from './Main_Page/MainPage'
 
 export {default as MEMGPT} from './MEMGPT_Home/Memgpt_QA'
+
+export {default as CAG} from './CAG_Home/Cag_QA'
 export {default as Modal} from './GDPR_Config/Modal';
 export {default as Delete1} from './GDPR_Config/Delete';

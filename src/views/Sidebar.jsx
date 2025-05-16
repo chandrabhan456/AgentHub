@@ -6,6 +6,7 @@ import gdprimg from "../data/gdpr.jpg";
 import { useNavigate, useLocation } from "react-router-dom";
 import agentimg from "../data/Agent.png";
 import MEMGPT from "../data/MEMGPT.png";
+import CAG from "../data/CAG.png";
 const Sidebar = () => {
   console.log("SSS");
   const { gdpr, mainPage, documentation, configuration, home, selectedAgent } =
@@ -113,6 +114,21 @@ const Sidebar = () => {
           />
         </div>
       )}
+       {selectedAgent === "cag" && (
+        <div style={{ textAlign: "center" }}>
+          <img
+            src={CAG}
+            alt="nttlogo"
+            style={{
+              width: "75%",
+              height: "145px",
+              display: "block",
+              margin: "0 auto",
+              border: "2px solid #d3d3d3", // Change this to customize your border
+            }}
+          />
+        </div>
+      )}
       {selectedAgent === "gdpr" && home && (
         <nav
           style={{
@@ -205,6 +221,42 @@ const Sidebar = () => {
                 style={buttonStyles("/memgpt")}
               >
                 🤖 MEMGPT Q&A
+              </button>
+            </li>
+            <li style={{ fontSize: "1.25rem", margin: "8px 0" }}>
+              <button
+                onClick={() => handleNavigation("/data-masking")}
+                style={buttonStyles("/data-masking")}
+              >
+                🔒 Data Masking
+              </button>
+            </li>
+          </ul>
+        </nav>
+      )}
+       {selectedAgent === "cag" && home && (
+        <nav
+          style={{
+            marginTop: "10px",
+            backgroundColor: "#f8f9fa",
+            padding: "6px",
+          }}
+        >
+          <ul
+            style={{
+              listStyleType: "none",
+              padding: "0",
+              margin: "0",
+              color: "#333",
+              textAlign: "left",
+            }}
+          >
+            <li style={{ fontSize: "1.25rem", margin: "8px 0" }}>
+              <button
+                onClick={() => handleNavigation("/cag")}
+                style={buttonStyles("/cag")}
+              >
+                🤖 CAG Q&A
               </button>
             </li>
             <li style={{ fontSize: "1.25rem", margin: "8px 0" }}>
