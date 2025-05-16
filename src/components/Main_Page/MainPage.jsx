@@ -58,6 +58,7 @@ const MainPage = () => {
       setSelectedAgent("gdpr");
       setGdpr(true);
       setHome(true);
+      setMainPage(false)
     }
     if (path === "/memgpt") {
       setSelectedAgent("memgpt");
@@ -69,7 +70,7 @@ const MainPage = () => {
       setGdpr(true);
       setHome(true);
     }
-    else{
+    else if(path==='/agile' || path ==='/agent5'){
       setMainPage(true)
     }
     navigate(path);
@@ -105,7 +106,7 @@ const MainPage = () => {
       description:
         "An agile agent rapidly adapts to changes, prioritizes collaboration, delivers iterative value, and continuously improves processes in dynamic environments.",
       tags: ["Agent", "1.0", "Collaboration"],
-      path:"/Agile"
+      path:"/agile"
     },
     {
       logo: agentimg,
