@@ -95,7 +95,7 @@ function Admin() {
 
   return (
     <div className="mt-0 h-screen bg-white" >
-      <div className="flex justify-between p-2 h-70 md:mx-0 relative w-full">
+      <div className="flex justify-between p-2 h-70 md:mx-0 relative w-full mt-10">
         <div className=" absolute inset-y-0 left-12 w-13 mt-7 justify-center">
           <div className=" mt-15 ">
             <div className="flex justify-between items-center">
@@ -105,13 +105,7 @@ function Admin() {
                   <p className="text-3xl font-extrabold tracking-tight text-black dark:text-white">
                     Users
                   </p>
-                  <button
-                    onClick={() => {seteditModalOpen('');setModalOpen(true)}}
-                    className="mt-1 ml-5 item-orange"
-                    style={{ color: "orange" }}
-                  >
-                    Add User
-                  </button>
+                 
                 </div>
               </div>
             </div>
@@ -189,8 +183,8 @@ function Admin() {
                     fontSize: "14pt",
                   }}
                 >
-                  <TableCellLayout style={{ paddingLeft: "60px" }} media={<img   style={{ width: "50px", height: "50px", borderRadius: '50%' }} src={item.EmployeeImage} alt="Avatar" />}>
-                    {item.Name}
+                  <TableCellLayout style={{ paddingLeft: "20px" }} media={<img   style={{ width: "50px", height: "50px", borderRadius: '50%' }} src={item.EmployeeImage} alt="Avatar" />}>
+                    <p className="ml-3">{item.Name}</p>
                   </TableCellLayout>
                 </TableCell>
            

@@ -21,7 +21,7 @@ import avatar4 from './avatar4.jpg';
 export const employeeHeader =[
  
  
-  { Key: "Name", label: "EmployeeName" },
+  { Key: "Name", label: "UserName" },
   { Key: "Title", label: "Title" },
   { Key: "Country", label: "Country" },
   { Key: "HireDate", label: "HireDate" },
