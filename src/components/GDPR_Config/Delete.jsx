@@ -10,6 +10,31 @@ export const Delete = ({ data,closeModal, onSubmit, defaultValue }) => {
   function handlecancel(){
     closeModal();
    }
+   const handleDelete = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:8000/users/delete_user/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any authorization headers if needed
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to delete user: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      console.log('User deleted:', result);
+
+      // Update your state or UI here to reflect the deleted user
+      // For example, remove the user from a list
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+  };
+
+
   return (
     <div
       className="modal-container"
@@ -26,10 +51,10 @@ export const Delete = ({ data,closeModal, onSubmit, defaultValue }) => {
         <IoCloseCircleOutline style={{height:'25px',width:'25px'}} onClick={handlecancel}/>
         </div>
         </div>
-        <label className="w-70">Are You Sure to Delete Order ID:-{data}</label>
-        <div className="flex" style={{marginTop:'15px',marginLeft:'60px'}}>
-      <button type="submit" className="btn1" onClick={handlecancel}>Cancel</button>
-      <button type="submit" className="btn" onClick={handlecancel}>Submit</button>
+        <label className="w-70">Are You Sure to Delete UserName:-{data}</label>
+        <div className="flex" style={{marginTop:'15px',marginLeft:'70px'}}>
+  
+      <button type="submit" className="btn" onClick={() => handleDelete(1)}>Confirm</button>
       </div>
       </div>
      

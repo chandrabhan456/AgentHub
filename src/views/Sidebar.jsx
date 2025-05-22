@@ -292,7 +292,7 @@ const Sidebar = () => {
                 onClick={() => handleNavigation("/admin")}
                 style={buttonStyles("/admin")}
               >
-                🤖 Admin
+                🧑‍⚖️ Admin
               </button>
             </li>
             <li style={{ fontSize: "1.25rem", margin: "8px 0" }}>
@@ -300,7 +300,7 @@ const Sidebar = () => {
                 onClick={() => handleNavigation("/registration")}
                 style={buttonStyles("/registration")}
               >
-                🔒 New User
+                ➕👤  New User
               </button>
             </li>
             <li style={{ fontSize: "1.25rem", margin: "8px 0" }}>
@@ -309,7 +309,7 @@ const Sidebar = () => {
                 onClick={() => handleNavigation("/password_change")}
                 style={buttonStyles("/password_change")}
               >
-                🔗 Password Change
+                🔑 Password Change
               </button>
             </li>
           </ul>

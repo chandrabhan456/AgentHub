@@ -41,18 +41,43 @@ const Memgpt_QA = () => {
         ...prevMessages,
         [currentChat]: [...prevMessages[currentChat], { sender: 'user', text: inputValue }]
       }));
-      setInputValue('');
+      
 
-      // Simulate bot response
-      setTimeout(() => {
-        setMessages((prevMessages) => ({
-          ...prevMessages,
-          [currentChat]: [
-            ...prevMessages[currentChat],
-            { sender: 'bot', text: 'Hello! I’m your friendly AI assistant, here to help you with any questions or information you need. Whether you’re looking for advice, technical assistance, or just curious about something, feel free to ask. I can provide insights, offer solutions, or even just chat about interesting topics. My goal is to make your experience as seamless and informative as possible. If there’s anything specific you’d like to know or discuss, just let me know, and I’ll do my best to assist you. Remember, I’m here to help, so don’t hesitate to reach out anytime!' }
-          ]
-        }));
-      }, 100);
+      const fetchBotResponse = async (currentChat, setMessages) => {
+  try {
+    const response = await fetch('http://127.0.0.1:5000/query', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: inputValue }), // Send the query as expected by the API
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+
+    // Update the state with the bot's response
+    setMessages((prevMessages) => ({
+      ...prevMessages,
+      [currentChat]: [
+        ...prevMessages[currentChat],
+        { sender: 'bot', text: data.context } // Assuming the API returns the bot's message in `data.reply`
+      ],
+    }));
+  } catch (error) {
+    console.error('Error fetching bot response:', error);
+  }
+};
+
+// Use the function to fetch the bot response
+setTimeout(() => {
+  fetchBotResponse(currentChat, setMessages);
+}, 100);
+setInputValue('');
+
     }
   };
 

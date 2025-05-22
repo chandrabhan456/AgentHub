@@ -26,12 +26,9 @@
     width:60%;
     margin-top: 30px;
   }
-  #tableheader{
-   
-    
-  }
+ 
   #tableheader:first-child #headercell:first-child{
-    border-top-left-radius: 10px;
+    border-top-left-radius: 0px;
   }
   
   #tableheader:first-child #headercell:last-child{
@@ -39,26 +36,26 @@
   }
   #headercell:first-child{
     
-   width:10%;
+   width:5%;
   }
   #headercell:nth-child(2){
     
-    width:13%;
+    width:7%;
    } #headercell:nth-child(3){
     
     width:14%;
    }
    #headercell:nth-child(4){
     
-    width:18%;
+    width:22%;
    }
    #headercell:nth-child(5){
     
-    width:15%;
+    width:30%;
    }
    #headercell:nth-child(6){
     
-    width:15%;
+    width:5%;
    }
    #tableheader:first-child #headercelle:first-child{
     border-top-left-radius: 10px;
