@@ -29,6 +29,7 @@ import { HiOutlineChevronLeft } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import "./searchbar.css";
+import { useStateContext } from "../../contexts/ContextProvider";
 const columnWidths = ["10%", "15%", "15%", "23%", "25%","12%"]; // Adjust the widths as needed
 
 const userHeader = [
@@ -42,6 +43,7 @@ const userHeader = [
 
 function Admin() {
   const [currentPage, setCurrentPage] = useState(1);
+   const { isDelete,setIsDelete } = useStateContext();
   const [inputText, setInputText] = useState("");
   const [selects, setSelects] = useState(8);
   const [sort, setSort] = useState({
@@ -79,16 +81,20 @@ function Admin() {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
+        if (!response.ok) {
         const data = await response.json();
         setUsers(data);
+        setIsDelete(false)
+      }
       } catch (error) {
         setError(error);
       }
     };
+  if (isDelete) {
+      fetchUsers();
+    }
+  }, [isDelete]); // Dependency array includes isDelete
 
-    // Call the fetch function
-    fetchUsers();
-  }, []);
   const inputHandler = (e) => {
     setInputText(e.target.value.toLowerCase());
   };

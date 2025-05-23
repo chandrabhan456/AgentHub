@@ -24,9 +24,7 @@ export const ContextProvider = ({ children }) => {
  }
   const [activeMenu, setActiveMenu] = useState((localStorage.getItem('openAI_Configuration')) || true);
   const [isClicked, setIsClicked] = useState(initialState);
-  const [currentColor, setCurrentColor] = useState('blue');
-  const [currentMode, setCurrentMode] = useState('Light');
-  const [themeSettings, setThemeSettings] = useState(false);
+ 
   const [mainPage, setMainPage] = useState(true)
   const [login1, setlogin1] = useState(initialLoginState);
   const [selectedAgent,setSelectedAgent] = useState('')
@@ -39,15 +37,13 @@ export const ContextProvider = ({ children }) => {
   const [configuration,setConfiguration] = useState(false)
   const [documentation,setDocumentation] = useState(false)
   const [gdpr,setGdpr] = useState(false)
-  const setMode = (e) => {
-    setCurrentMode(e.target.value);
-    localStorage.setItem('themeMode', e.target.value);
-  };
+   const [isDelete, setIsDelete] = useState(true);
+ 
   const handleClick = (clicked) => setIsClicked({ ...initialState, [clicked]: true });
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <StateContext.Provider value={{selectedAgent,setSelectedAgent,gdpr,setGdpr,documentation,setDocumentation,configuration,setConfiguration,currentMode, setCurrentMode,home,setHome,login1,setlogin1,mainPage,setMainPage,activeMenu,setActiveMenu,handleClick,setIsClicked,isClicked,initialState,setCurrentColor}}>
+    <StateContext.Provider value={{isDelete, setIsDelete,selectedAgent,setSelectedAgent,gdpr,setGdpr,documentation,setDocumentation,configuration,setConfiguration,home,setHome,login1,setlogin1,mainPage,setMainPage,activeMenu,setActiveMenu,handleClick,setIsClicked,isClicked,initialState,}}>
       {children}
     </StateContext.Provider>
   );

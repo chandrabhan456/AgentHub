@@ -45,22 +45,23 @@ function Registration() {
   };
 
   return (
-    <div className="h-screen bg-white flex items-center justify-center">
-      <div className="bg-white shadow-2xl rounded-lg p-8 w-full max-w-md ml-[30%]">
-        <form className="flex flex-col items-center" onSubmit={handleSubmit}>
-          <div className="mb-4 w-full">
-            <label htmlFor="firstName" className="block ml-2 font-semibold mb-1">First Name</label>
+    <div className="h-screen bg-white  items-center justify-center">
+      <div className="bg-gray-50 shadow-2xl rounded-lg p-8  w-[25%] ml-[35%] mt-[100px]">
+        <p className='text-2xl ml-2 font-extrabold text-blue-800'>Add New User</p>
+        <form className="flex flex-col mt-2" onSubmit={handleSubmit}>
+          <div className=" w-full">
+            <label htmlFor="firstName" className="block ml-2  font-semibold mb-1">First Name</label>
             <input
               type="text"
               id="firstName"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              className="w-full h-12 text-lg bg-slate-100 border border-gray-300 p-2 rounded-lg outline-none"
+              className=" w-[94%] h-12 text-lg bg-slate-200 border border-gray-300 p-2 rounded-lg outline-none"
             />
           </div>
 
-          <div className="mb-4 w-full">
+          <div className="mb-1 w-full">
             <label htmlFor="lastName" className="block ml-2 font-semibold mb-1">Last Name</label>
             <input
               type="text"
@@ -68,7 +69,7 @@ function Registration() {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              className="w-full h-12 text-lg bg-slate-100 border border-gray-300 p-2 rounded-lg outline-none"
+              className="w-[94%]  h-12 text-lg bg-slate-200 border border-gray-300 p-2 rounded-lg outline-none"
             />
           </div>
 
@@ -80,7 +81,7 @@ function Registration() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full h-12 text-lg bg-slate-100 border border-gray-300 p-2 rounded-lg outline-none"
+              className="w-[94%]  h-12 text-lg bg-slate-200 border border-gray-300 p-2 rounded-lg outline-none"
             />
           </div>
 
@@ -92,21 +93,21 @@ function Registration() {
               name="designation"
               value={formData.designation}
               onChange={handleChange}
-              className="w-full h-12 text-lg bg-slate-100 border border-gray-300 p-2 rounded-lg outline-none"
+              className="w-[94%]  h-12 text-lg bg-slate-200 border border-gray-300 p-2 rounded-lg outline-none"
             />
           </div>
 
-          <div className="flex mt-6 justify-end w-full" style={{marginLeft:'116%'}}>
+          <div className="flex mt-6 justify-end w-full" style={{marginLeft:'25%'}}>
             <button
               type="button"
-              className="bg-gray-400 text-white font-bold py-2 px-4 rounded mr-2"
+              className="bg-gray-400 w-[30%] text-white font-bold py-2 px-4 rounded mr-2"
               onClick={() => setFormData({ firstName: '', lastName: '', email: '', designation: '' })}
             >
               Clear
             </button>
             <button
               type="submit"
-              className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-500 w-[40%] text-white font-bold py-2 px-4 rounded"
             >
               Submit
             </button>

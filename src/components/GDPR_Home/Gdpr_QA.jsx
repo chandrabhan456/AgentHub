@@ -28,39 +28,58 @@ const Gdpr_QA = () => {
     setInputValue(event.target.value);
   };
 
-  const handleSendMessage = () => {
-    if (inputValue.trim() !== "" && currentChat) {
+ const handleSendMessage = () => {
+    if (inputValue.trim() !== '' && currentChat) {
       // Ensure the currentChat has been initialized in messages
       if (!messages[currentChat]) {
         setMessages((prevMessages) => ({ ...prevMessages, [currentChat]: [] }));
       }
-
+ 
       // Add user message to current chat
       setMessages((prevMessages) => ({
         ...prevMessages,
-        [currentChat]: [
-          ...prevMessages[currentChat],
-          { sender: "user", text: inputValue },
-        ],
+        [currentChat]: [...prevMessages[currentChat], { sender: 'user', text: inputValue }]
       }));
-      setInputValue("");
-
-      // Simulate bot response
-      setTimeout(() => {
-        setMessages((prevMessages) => ({
-          ...prevMessages,
-          [currentChat]: [
-            ...prevMessages[currentChat],
-            {
-              sender: "bot",
-              text: "Hello! I’m your friendly AI assistant, here to help you with any questions or information you need. Whether you’re looking for advice, technical assistance, or just curious about something, feel free to ask. I can provide insights, offer solutions, or even just chat about interesting topics. My goal is to make your experience as seamless and informative as possible. If there’s anything specific you’d like to know or discuss, just let me know, and I’ll do my best to assist you. Remember, I’m here to help, so don’t hesitate to reach out anytime!",
-            },
-          ],
-        }));
-      }, 100);
+     
+ 
+      const fetchBotResponse = async (currentChat, setMessages) => {
+  try {
+    const response = await fetch('http://localhost:8000/gdpr/qa_chat/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ question: inputValue }), // Send the query as expected by the API
+    });
+ 
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+ 
+    const data = await response.json();
+ 
+    // Update the state with the bot's response
+    setMessages((prevMessages) => ({
+      ...prevMessages,
+      [currentChat]: [
+        ...prevMessages[currentChat],
+        { sender: 'bot', text: data.answer } // Assuming the API returns the bot's message in `data.reply`
+      ],
+    }));
+  } catch (error) {
+    console.error('Error fetching bot response:', error);
+  }
+};
+ 
+// Use the function to fetch the bot response
+setTimeout(() => {
+  fetchBotResponse(currentChat, setMessages);
+}, 100);
+setInputValue('');
+ 
     }
   };
-
+ 
   useEffect(() => {}, [showHistory, currentChat, inputValue]);
 
   return (
@@ -72,7 +91,7 @@ const Gdpr_QA = () => {
         style={{ width: showHistory ? "70%" : "100%" }}
       >
         <div className="content-header">
-          <p className="text-3xl">GenAI GDPR Agent | {currentChat}</p>
+          <p className="text-3xl">GDPR Agent | {currentChat}</p>
 
           <div
             className="button-group1"
