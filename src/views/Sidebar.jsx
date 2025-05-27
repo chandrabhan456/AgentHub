@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import agentimg from "../data/Agent.png";
 import MEMGPT from "../data/MEMGPT.png";
 import CAG from "../data/CAG.png";
+import PRESALES from "../data/presales.png";
 const Sidebar = () => {
   console.log("SSS");
   const { gdpr, mainPage, documentation, configuration, home, selectedAgent } =
@@ -129,6 +130,21 @@ const Sidebar = () => {
           />
         </div>
       )}
+       {selectedAgent === "presales" && (
+        <div style={{ textAlign: "center" }}>
+          <img
+            src={PRESALES}
+            alt="nttlogo"
+            style={{
+              width: "75%",
+              height: "145px",
+              display: "block",
+              margin: "0 auto",
+              border: "2px solid #d3d3d3", // Change this to customize your border
+            }}
+          />
+        </div>
+      )}
       {selectedAgent === "gdpr" && home && (
         <nav
           style={{
@@ -223,14 +239,7 @@ const Sidebar = () => {
                 🤖 MEMGPT Q&A
               </button>
             </li>
-            <li style={{ fontSize: "1.25rem", margin: "8px 0" }}>
-              <button
-                onClick={() => handleNavigation("/data-masking")}
-                style={buttonStyles("/data-masking")}
-              >
-                🔒 Data Masking
-              </button>
-            </li>
+         
           </ul>
         </nav>
       )}
@@ -259,12 +268,41 @@ const Sidebar = () => {
                 🤖 CAG Q&A
               </button>
             </li>
+           
+          </ul>
+        </nav>
+      )}
+          {selectedAgent === "presales" && home && (
+        <nav
+          style={{
+            marginTop: "10px",
+            backgroundColor: "#f8f9fa",
+            padding: "6px",
+          }}
+        >
+          <ul
+            style={{
+              listStyleType: "none",
+              padding: "0",
+              margin: "0",
+              color: "#333",
+              textAlign: "left",
+            }}
+          >
             <li style={{ fontSize: "1.25rem", margin: "8px 0" }}>
               <button
-                onClick={() => handleNavigation("/data-masking")}
-                style={buttonStyles("/data-masking")}
+                onClick={() => handleNavigation("/presales")}
+                style={buttonStyles("/presales")}
               >
-                🔒 Data Masking
+                🤖 RFP Understanding
+              </button>
+            </li>
+            <li style={{ fontSize: "1.25rem", margin: "8px 0" }}>
+              <button
+                onClick={() => handleNavigation("/proposal")}
+                style={buttonStyles("/proposal")}
+              >
+              ✏️ Proposal Genration 
               </button>
             </li>
           </ul>

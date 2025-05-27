@@ -6,7 +6,7 @@ import avatar from "../../data/gdpr.jpg";
 import CAG from "../../data/CAG.png";
 import MEMGPT from "../../data/MEMGPT.png";
 import Agile from "../../data/Agile.png";
-import agentimg from "../../data/Agent.png";
+import agentimg from "../../data/presales.png";
 import { useNavigate } from "react-router-dom";
 import { HiOutlineChevronRight } from "react-icons/hi";
 import { HiOutlineChevronLeft } from "react-icons/hi";
@@ -31,7 +31,7 @@ const Container = ({ logo, name, description, tags, url }) => {
           ))}
         </div>
         <div className="tag1">
-         {name === "GDPR" || name === "MEMGPT" || name === "CAG" ? (
+         {name === "GDPR" || name === "MEMGPT" || name === "CAG" ||name === 'Presales Agent' ? (
   <span className="bg-white border border-[#007BFF] rounded-md px-2 py-1 mt-2 text-xs ml-[2%] w-full max-w-[60px] text-center text-[#007bff]">Demo</span>
 
     ) : (
@@ -70,7 +70,12 @@ const MainPage = () => {
       setGdpr(true);
       setHome(true);
     }
-    else if(path==='/agile' || path ==='/agent5'){
+     if (path === "/presales") {
+      setSelectedAgent("presales");
+      setGdpr(true);
+      setHome(true);
+    }
+    else if(path==='/agile' ){
       setMainPage(true)
     }
     navigate(path);
@@ -110,11 +115,11 @@ const MainPage = () => {
     },
     {
       logo: agentimg,
-      name: "Agent5",
+      name: "Presales Agent",
       description:
-        "Agent5, or Controller and Auditor-General, oversees government spending and audits public sector accounts to ensure transparency and accountability.",
-      tags: ["Agent", "1.0", "Public Audit"],
-      path: "/agent5",
+        "A Presales Agent is a professional who provides technical and product support, helping to shape and close sales opportunities.",
+      tags: ["Agent", "1.0", "Consultant"],
+      path: "/presales",
     },
   ];
 

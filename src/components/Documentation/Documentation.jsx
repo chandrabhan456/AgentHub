@@ -18,6 +18,15 @@ const memgptTopics = [
   { id: "benefits", title: "4. Benefits" },
   { id: "limitations", title: "5. Limitations" },
 ];
+const presalesTopics = [
+  { id: "overview", title: "1. Overview of Presales" },
+  { id: "responsibilities", title: "2. Responsibilities of a Presales Agent" },
+  { id: "skills", title: "3. Essential Skills" },
+  { id: "tools", title: "4. Tools and Technologies" },
+  { id: "process", title: "5. Presales Process" },
+  { id: "challenges", title: "6. Common Challenges" },
+  { id: "success", title: "7. Keys to Success" },
+];
 
 const gdprButtonLabels = [
   "Compliance",
@@ -45,6 +54,13 @@ const cagAgentButtonLabels = [
   "Integration",
   "Scalability",
 ];
+const presalesButtonLabels = [
+  "Solution Design",
+  "Customer Engagement",
+  "Technical Expertise",
+  "Proposal Development",
+];
+
 const Documentation = () => {
   const [activeId, setActiveId] = useState("");
   const { selectedAgent } = useStateContext();
@@ -80,7 +96,9 @@ const Documentation = () => {
   ? "GDPR Agent" 
   : selectedAgent === "memgpt" 
   ? "MEMGPT Agent" 
-  : "CAG Agent";
+  : selectedAgent === "cag"
+  ? "CAG Agent"
+  : "Presales Agent" 
 
 console.log(agentName); // This will log the agent name based on the selected agent
 
@@ -89,11 +107,13 @@ console.log(agentName); // This will log the agent name based on the selected ag
  
 const topics = selectedAgent === "gdpr" ? gdprTopics 
                : selectedAgent === "memgpt" ? memgptTopics 
-               : cagAgentTopics;
+               :selectedAgent === "cag" ? cagAgentTopics
+               : presalesTopics;
 
 const buttonLabels = selectedAgent === "gdpr" ? gdprButtonLabels 
                      : selectedAgent === "memgpt" ? memgptButtonLabels 
-                     : cagAgentButtonLabels;
+                     :selectedAgent === "cag" ? cagAgentButtonLabels 
+                     : presalesButtonLabels;
 
 
   useEffect(() => {
@@ -191,6 +211,34 @@ const buttonLabels = selectedAgent === "gdpr" ? gdprButtonLabels
         return "Content coming soon...";
     }
   }
+  
+if (selectedAgent === "presales") {
+  switch (topicId) {
+    case "overview":
+      return "Presales involves the activities carried out before a sale is closed, aiming to prepare and position products or services to meet customer needs effectively. Presales agents play a crucial role in bridging the gap between the sales and technical teams, ensuring that client requirements are thoroughly understood and addressed.";
+
+    case "responsibilities":
+      return "Presales agents are responsible for: \n1. **Understanding Customer Needs:** Engaging with potential clients to understand their business requirements.\n2. **Solution Design:** Collaborating with technical teams to design solutions that meet customer needs.\n3. **Proposal Development:** Creating detailed proposals and presentations to communicate solutions.\n4. **Demonstrations:** Conducting product demonstrations and workshops to showcase capabilities.\n5. **Market Research:** Analyzing market trends to identify opportunities and tailor offerings.";
+
+    case "skills":
+      return "Essential skills for presales agents include:\n1. **Communication Skills:** Ability to convey complex information clearly and persuasively.\n2. **Technical Proficiency:** Understanding of product features and technical aspects.\n3. **Analytical Skills:** Ability to analyze customer needs and translate them into solutions.\n4. **Problem-Solving:** Skills to identify and resolve issues proactively.\n5. **Interpersonal Skills:** Building strong relationships with clients and internal teams.";
+
+    case "tools":
+      return "Presales agents often use various tools and technologies, such as:\n1. **CRM Software:** To manage customer interactions and track opportunities.\n2. **Presentation Software:** Tools like PowerPoint for creating impactful presentations.\n3. **Collaboration Platforms:** Tools such as Slack or Microsoft Teams for communication.\n4. **Data Analytics Tools:** Software to analyze market trends and customer data.\n5. **Product Demonstration Tools:** Platforms for virtual demos and workshops.";
+
+    case "process":
+      return "The presales process typically involves:\n1. **Initial Engagement:** Interacting with potential clients to understand needs.\n2. **Solution Design:** Collaborating with teams to design tailored solutions.\n3. **Proposal and Presentation:** Developing comprehensive proposals and presentations.\n4. **Demonstration and Evaluation:** Conducting demos and addressing client questions.\n5. **Feedback and Revision:** Revising proposals based on client feedback.";
+
+    case "challenges":
+      return "Common challenges in presales include:\n1. **Aligning with Customer Needs:** Ensuring solutions align with evolving customer requirements.\n2. **Balancing Technical and Sales Aspects:** Effectively communicating technical details to non-technical stakeholders.\n3. **Managing Tight Deadlines:** Delivering proposals and presentations within tight timeframes.\n4. **Coordinating Across Teams:** Ensuring smooth collaboration between sales, technical, and marketing teams.";
+
+    case "success":
+      return "Keys to success for presales agents include:\n1. **Continuous Learning:** Staying updated with industry trends and product developments.\n2. **Effective Communication:** Building strong relationships through clear communication.\n3. **Customer Focus:** Prioritizing customer needs and tailoring solutions accordingly.\n4. **Collaboration:** Working seamlessly with cross-functional teams to deliver value.\n5. **Adaptability:** Being flexible and responsive to changing market conditions.";
+
+    default:
+      return "Content coming soon...";
+  }
+}
   };
 
   return (

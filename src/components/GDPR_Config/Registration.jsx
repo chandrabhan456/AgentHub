@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 function Registration() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    fname: '',
+    lname: '',
     email: '',
     designation: '',
   });
@@ -31,8 +31,8 @@ function Registration() {
         console.log('User added successfully');
         // Optionally, clear the form or redirect the user
         setFormData({
-          firstName: '',
-          lastName: '',
+          fname: '',
+          lname: '',
           email: '',
           designation: '',
         });
@@ -50,24 +50,24 @@ function Registration() {
         <p className='text-2xl ml-2 font-extrabold text-blue-800'>Add New User</p>
         <form className="flex flex-col mt-2" onSubmit={handleSubmit}>
           <div className=" w-full">
-            <label htmlFor="firstName" className="block ml-2  font-semibold mb-1">First Name</label>
+            <label htmlFor="fname" className="block ml-2  font-semibold mb-1">First Name</label>
             <input
               type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
+              id="fname"
+              name="fname"
+              value={formData.fname}
               onChange={handleChange}
               className=" w-[94%] h-12 text-lg bg-slate-200 border border-gray-300 p-2 rounded-lg outline-none"
             />
           </div>
 
           <div className="mb-1 w-full">
-            <label htmlFor="lastName" className="block ml-2 font-semibold mb-1">Last Name</label>
+            <label htmlFor="lname" className="block ml-2 font-semibold mb-1">Last Name</label>
             <input
               type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
+              id="lname"
+              name="lname"
+              value={formData.lname}
               onChange={handleChange}
               className="w-[94%]  h-12 text-lg bg-slate-200 border border-gray-300 p-2 rounded-lg outline-none"
             />
@@ -101,7 +101,7 @@ function Registration() {
             <button
               type="button"
               className="bg-gray-400 w-[30%] text-white font-bold py-2 px-4 rounded mr-2"
-              onClick={() => setFormData({ firstName: '', lastName: '', email: '', designation: '' })}
+              onClick={() => setFormData({ fname: '', lname: '', email: '', designation: '' })}
             >
               Clear
             </button>

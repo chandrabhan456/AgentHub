@@ -90,6 +90,9 @@ const Navbar = () => {
                   else if (selectedAgent === "cag") {
                     navigate("/cag");
                   }
+                  else if (selectedAgent === "presales") {
+                    navigate("/presales");
+                  }
                 }}
               >
                 <IoHomeOutline className="inline-block mt-1 mr-1" />

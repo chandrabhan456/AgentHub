@@ -3,7 +3,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar,  Sidebar} from './views';
 import { useStateContext } from './contexts/ContextProvider';
-import {CAG,MEMGPT,MainPage,GDPR,Data_Mask,Compliance,Rectification,RFP,DSAR,Admin1,Documentation,Registration,Pass } from './components'
+import {UploadCard2,UploadCard,Proposal,RPF1,CAG,MEMGPT,MainPage,GDPR,Data_Mask,Compliance,Rectification,RFP,DSAR,Admin1,Documentation,Registration,Pass, RFP1 } from './components'
 import nttlogo from './data/nttdatalogo.svg';
 import Login from "./views/Login";
 const App = () => {
@@ -73,6 +73,12 @@ const App = () => {
     {selectedAgent === 'cag' && (
       <>
         <Route path="/cag" element={<CAG />} />
+        </>)}
+          {selectedAgent === 'presales' && (
+      <> 
+       <Route path="/presales" element={<UploadCard />} />
+        <Route path="/rfp" element={<RFP1 />} />
+          <Route path="/proposal" element={<UploadCard2 />} />
         </>)}
     {/* Common routes available regardless of flags */}
    
