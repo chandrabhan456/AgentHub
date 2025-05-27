@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FiSend } from "react-icons/fi";
-import "./Home.css";
+import "./Home2.css";
 import azureimg from "../../data/chatbot.png";
 const Gdpr_QA = () => {
   const [messages, setMessages] = useState({

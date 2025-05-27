@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { FiSend } from "react-icons/fi";
-import './Home.css'
+import "./Home1.css"
 import azureimg from '../../data/chatbot.png';
+const buttonItems = [
+    { label: 'Generate Questionnaire' },
+    { label: 'Generate RFP document' },
+    { label: 'Generate Summary' },
+    { label: 'Generate Use Case' },
+    { label: 'Generate High Level Architecture' },
+    { label: 'Generate Tech Stack' },
+    { label: 'Generate Data Volume' },
+  ];
 const RFP = () => {
 const [messages, setMessages] = useState({
     Chat01: [], // Initialize Chat01 with an empty array
@@ -66,12 +75,12 @@ const [messages, setMessages] = useState({
     <div className="h-screen bg-white flex  ">
       
       <div
-        className={`page-container transition-all duration-300 ${showHistory ? '' : 'w-full'}`}
+        className={`page-container1 transition-all duration-300 ${showHistory ? '' : 'w-full'}`}
         style={{ width: showHistory ? '70%' : '100%' }}
       
       >
       <div className="content-header">
-            <p className="text-3xl">GenAI Presales Agent | {currentChat}</p>
+            <p className="text-3xl">RFP Understanding | {currentChat}</p>
            
             <div className="button-group1" style={{ display: 'flex', gap: '10px',position:'absolute',right:'0' }}>
   <button className="history-button text-xl" onClick={toggleHistory}>
@@ -101,7 +110,7 @@ const [messages, setMessages] = useState({
 
     
     {messages[currentChat].length !== 0 && (
-<div className="chat-container p-4" >
+<div className="chat-container1 p-4" >
   {(messages[currentChat] || []).map((message, index) => (
     
     <div
@@ -131,19 +140,31 @@ const [messages, setMessages] = useState({
 )}
 
   
-            <div className="input-container ">
+        <div className="input-container1 " >
       
     <textarea
-      className="question-input0 dark:bg-[#1e1e1e] bg-white  border border-gray-300 dark:border-[#4f4f4f]  dark:text-white text-black"
+      className="question-input01 dark:bg-[#1e1e1e] bg-white  border border-gray-300 dark:border-[#4f4f4f]  dark:text-white text-black"
       placeholder="Type your question here..."
       value={inputValue}
       onChange={handleInputChange}
     ></textarea>
   
-    <button className="send-button" onClick={handleSendMessage}>
+    <button className="send-button mt-2" onClick={handleSendMessage}>
       <FiSend className="send-icon" />
     </button>
   </div>
+ 
+<div className=" mt-5  p-4 bg-white" >
+      <ul className="flex flex-wrap gap-4 bg-white p-0 rounded-md ">
+        {buttonItems.map((item, index) => (
+          <li key={index}>
+            <button className="px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50">
+              {item.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
   {showHistory && (
         <div className="history-box ml-2 transition-all duration-300 text-left m-0">

@@ -1,7 +1,7 @@
-.page-container {
+.page-container1 {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 80vh;
 
   border-radius: 20px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
@@ -37,21 +37,23 @@
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.input-container {
+.input-container1 {
   position: absolute; /* Fixes the container to the viewport */
   bottom: 0; /* Positions it at the bottom */
-  
+  height: 70px;
   width: 98%; /* Ensures it spans the full width of the viewport */
   padding: 10px; /* Adds padding inside the container */
   box-sizing: border-box; /* Includes padding in the element's total width/height */
   background-color: #fff; /* Optional: Set a background color */
   z-index: 1000; /* Ensures it appears above other content */
+  margin-bottom: 11%; /* Adds margin-bottom of 10% */
 }
 
 
-.question-input0 {
+
+.question-input01 {
   width: 100%;
-  height: 120px;
+  height: 70px;
   padding: 10px;
   padding-right: 50px;
   font-size: 16px;
@@ -81,13 +83,13 @@
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.chat-container {
-  background-color: white; /* Equivalent to Tailwind's bg-gray-100 */
+.chat-container1 {
+  background-color:white ; /* Equivalent to Tailwind's bg-gray-100 */
   padding: 16px; /* Equivalent to Tailwind's p-4 */
   overflow-y: auto;
   max-width: 100%;
   overflow-x: hidden;
-  max-height: 32rem; /* Equivalent to Tailwind's max-h-96, which is 384px */
+  height: 24rem; /* Equivalent to Tailwind's max-h-96, which is 384px */
   display: flex;
   flex-direction: column;
   scrollbar-width: thin; /* Makes the scrollbar thinner */

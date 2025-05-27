@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { UploadCloud } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import RFP  from './RFP'
 
-function UploadCard() {
+const UploadCard = () => {
   const [selectedFileRFP, setSelectedFileRFP] = useState(null);
   const [selectedFileAccelerator, setSelectedFileAccelerator] = useState(null);
+  const [uploadSuccess,setUploadSuccess] = useState(false)
   const navigate = useNavigate();
   const handleFileChangeRFP = (event) => {
     setSelectedFileRFP(event.target.files[0]);
@@ -12,18 +14,21 @@ function UploadCard() {
 
   const handleFileChangeAccelerator = (event) => {
     setSelectedFileAccelerator(event.target.files[0]);
-    if(selectedFileRFP && selectedFileAccelerator)
+  
+  };
+   useEffect(() => {
+        if(selectedFileRFP && selectedFileAccelerator)
     {
-        alert(1)
+        
+        setUploadSuccess(true)
     }
-  };
+      
+    }, [uploadSuccess,selectedFileAccelerator,selectedFileRFP]);
  
-  const handleChatClick = () => {
-    navigate('/rfp');
-  };
+ 
   return (
     <div className="p-4 bg-white rounded-lg">
-        <div className='mt-10'>
+    {!uploadSuccess &&    <div className='mt-10'>
       <p className=" mb-4">
         <strong className='text-blue-500'>Note:</strong> Please upload both RFP document and Accelerator list in PDF or Word or Excel format to proceed.
       </p>
@@ -57,7 +62,17 @@ function UploadCard() {
         </div>
       </div>
    
+    </div>}
+    {uploadSuccess &&<>
+ 
+    <div className='mt-5 w-full bg-gray-100 rounded-lg p-4'>
+        <p className='font-semibold'><strong>Uploaded RFP:</strong>📄{selectedFileRFP.name}</p>
+          <p className='font-semibold'><strong className='font-bold '>Uploaded Accelerator:</strong> 📄{selectedFileAccelerator.name}</p>
     </div>
+    <div className='mt-3 ' style={{height:'70%'}}>
+    <RFP />
+    </div>
+    </>}
     </div>
   );
 }
