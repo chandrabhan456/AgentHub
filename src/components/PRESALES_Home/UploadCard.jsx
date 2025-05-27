@@ -12,6 +12,10 @@ function UploadCard() {
 
   const handleFileChangeAccelerator = (event) => {
     setSelectedFileAccelerator(event.target.files[0]);
+    if(selectedFileRFP && selectedFileAccelerator)
+    {
+        alert(1)
+    }
   };
  
   const handleChatClick = () => {
@@ -52,15 +56,7 @@ function UploadCard() {
           </div>
         </div>
       </div>
-      {/* Additional content or buttons can go here */}
-       <div className="" style={{ display: 'flex', gap: '10px',position:'absolute',right:'30px' }}>
-        <button  className="bg-blue-500 text-white py-2 px-4 w-32 rounded-lg hover:bg-blue-600">
-          Upload
-        </button>
-        <button   onClick={handleChatClick} className="bg-green-500 text-white py-2 px-4 w-32 rounded-lg hover:bg-green-600">
-          Chat
-        </button>
-        </div>
+   
     </div>
     </div>
   );
