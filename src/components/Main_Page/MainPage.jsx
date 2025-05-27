@@ -20,10 +20,10 @@ const Container = ({ logo, name, description, tags, url }) => {
       <div className="container-content">
         <div className="header">
           <img src={logo} alt={`${name} logo`} className="h-16 w-30" />
-          <h3 className="name">{name}</h3>
+          <h3 className="name whitespace-nowrap">{name}</h3>
         </div>
-        <p className="description text-left m-0">{description}</p>
-        <div className="tags">
+        <p className="description text-left m-0  ">{description}</p>
+        <div className="tags whitespace-nowrap">
           {tags.map((tag, index) => (
             <span key={index} className="tag">
               {tag}
@@ -94,7 +94,7 @@ const MainPage = () => {
       name: "MEMGPT",
       description:
         "MEMGPT Agent is an AI tool designed to enhance memory management, improving information retention and recall efficiency in applications.",
-      tags: ["Agent", "1.0", "Information Retention"],
+      tags: ["Agent", "1.0", "Innovation"],
       path: "/memgpt",
     },
     {
