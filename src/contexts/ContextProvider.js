@@ -32,7 +32,11 @@ export const ContextProvider = ({ children }) => {
     localStorage.setItem('login', login1);
   }, [login1]);
   
-  
+  const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile1, setSelectedFile1] = useState(null);
+      const [selectedFile2, setSelectedFile2] = useState(null);
+      const [selectedFile3, setSelectedFile3] = useState(null);
+
   const [home,setHome] = useState(false)
   const [configuration,setConfiguration] = useState(false)
   const [documentation,setDocumentation] = useState(false)
@@ -43,7 +47,7 @@ export const ContextProvider = ({ children }) => {
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <StateContext.Provider value={{isDelete, setIsDelete,selectedAgent,setSelectedAgent,gdpr,setGdpr,documentation,setDocumentation,configuration,setConfiguration,home,setHome,login1,setlogin1,mainPage,setMainPage,activeMenu,setActiveMenu,handleClick,setIsClicked,isClicked,initialState,}}>
+    <StateContext.Provider value={{isDelete, setIsDelete,selectedAgent,setSelectedAgent,selectedFile, setSelectedFile,selectedFile1,setSelectedFile1, setSelectedFile2,selectedFile2, setSelectedFile3,selectedFile3, gdpr,setGdpr,documentation,setDocumentation,configuration,setConfiguration,home,setHome,login1,setlogin1,mainPage,setMainPage,activeMenu,setActiveMenu,handleClick,setIsClicked,isClicked,initialState,}}>
       {children}
     </StateContext.Provider>
   );

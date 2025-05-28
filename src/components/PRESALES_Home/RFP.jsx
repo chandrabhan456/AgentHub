@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FiSend } from "react-icons/fi";
 import "./Home1.css";
 import azureimg from "../../data/chatbot.png";
+import { ThumbsUp, ThumbsDown, Copy, Download } from 'lucide-react';
+import {  useStateContext } from "../../contexts/ContextProvider";
+
 const buttonItems = [
   { label: "Generate Questionnaire" },
   { label: "Generate RFP document" },
@@ -15,10 +18,14 @@ const RFP = () => {
   const [messages, setMessages] = useState({
     Chat01: [], // Initialize Chat01 with an empty array
   });
+  const {selectedFile, setSelectedFile} = useStateContext()
+  const [isTyping, setIsTyping] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [showHistory, setShowHistory] = useState(false);
   const [chatList, setChatList] = useState(["Chat01"]);
-
+   const [copiedIndex, setCopiedIndex] = useState(null);
+   const [likedIndex, setLikedIndex] = useState(null);
+   const [responseTime, setResponseTime] = useState(null);
   // State to hold the current chat
   const [currentChat, setCurrentChat] = useState("Chat01");
   const addNewChat = () => {
@@ -38,56 +45,102 @@ const RFP = () => {
   };
  
   const handleButtonClick = (label) => {
-    setMessages((prevMessages) => ({
-      ...prevMessages,
-      [currentChat]: [...(prevMessages[currentChat] || []), { sender: 'user', text: label }]
-    }));
-     setTimeout(() => {
-        setMessages((prevMessages) => ({
-          ...prevMessages,
-          [currentChat]: [
-            ...prevMessages[currentChat],
-            {
-              sender: "bot",
-              text: "Hello! I’m your friendly AI assistant, here to help you with any questions or information you need. Whether you’re looking for advice, technical assistance, or just curious about something, feel free to ask. I can provide insights, offer solutions, or even just chat about interesting topics. My goal is to make your experience as seamless and informative as possible. If there’s anything specific you’d like to know or discuss, just let me know, and I’ll do my best to assist you. Remember, I’m here to help, so don’t hesitate to reach out anytime!",
-            },
-          ],
-        }));
-      }, 100);
+    setInputValue(label)
+    
   };
-  const handleSendMessage = () => {
-    if (inputValue.trim() !== "" && currentChat) {
-      // Ensure the currentChat has been initialized in messages
-      if (!messages[currentChat]) {
+  const handleSendMessage = async () => {
+if (!inputValue.trim() || !selectedFile) return;
+ 
+  if (!messages[currentChat]) {
         setMessages((prevMessages) => ({ ...prevMessages, [currentChat]: [] }));
       }
-
+ 
       // Add user message to current chat
       setMessages((prevMessages) => ({
         ...prevMessages,
         [currentChat]: [
           ...prevMessages[currentChat],
-          { sender: "user", text: inputValue },
+          { role: "user", content: inputValue },
         ],
       }));
       setInputValue("");
+ 
+  const formData = new FormData();
+  formData.append("file", selectedFile); // send only RFP for now
+  formData.append("query", inputValue.trim());
+ 
+  const startTime = performance.now();
 
-      // Simulate bot response
-      setTimeout(() => {
-        setMessages((prevMessages) => ({
-          ...prevMessages,
-          [currentChat]: [
-            ...prevMessages[currentChat],
-            {
-              sender: "bot",
-              text: "Hello! I’m your friendly AI assistant, here to help you with any questions or information you need. Whether you’re looking for advice, technical assistance, or just curious about something, feel free to ask. I can provide insights, offer solutions, or even just chat about interesting topics. My goal is to make your experience as seamless and informative as possible. If there’s anything specific you’d like to know or discuss, just let me know, and I’ll do my best to assist you. Remember, I’m here to help, so don’t hesitate to reach out anytime!",
-            },
-          ],
-        }));
-      }, 100);
-    }
+  setIsTyping(true);
+ 
+  try {
+    const res = await fetch("http://localhost:8000/generate", {
+      method: "POST",
+      body: formData,
+    });
+ 
+    const data = await res.json();
+    const endTime = performance.now();
+    const timeTaken = data.response_time;//((endTime - startTime) / 1000).toFixed(2);
+ 
+    setResponseTime(timeTaken);
+ 
+    const assistantMsg = {
+      role: 'assistant',
+      content: data.message,
+      download: data.download_url?.split('/').pop(),
+      fullUrl: data.download_url,
+      timeTaken,
+    };
+ 
+    setMessages((prevMessages) => ({
+    ...prevMessages,
+    [currentChat]: [
+      ...prevMessages[currentChat],
+      assistantMsg,
+    ],
+  }));
+  } catch (error) {
+    console.error("Generation error:", error);
+const assistantMsg = {
+      role: 'assistant',
+      content: "Server Response failed!",
+     
+    };
+ 
+    setMessages((prevMessages) => ({
+    ...prevMessages,
+    [currentChat]: [
+      ...prevMessages[currentChat],
+      assistantMsg,
+    ],
+  }));
+  } finally {
+    setIsTyping(false);
+    //setLoading(false);
+  }
   };
+const handleDownload = async (filename) => {
+  const res = await fetch("http://localhost:8000/download", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ filename }),
+  });
 
+  const blob = await res.blob();
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  a.remove();
+};
+
+ const handleCopy = (text, index) => {
+   navigator.clipboard.writeText(text);
+   setCopiedIndex(index);
+   setTimeout(() => setCopiedIndex(null), 2000);
+ };
   useEffect(() => {}, [showHistory, currentChat, inputValue]);
 
   return (
@@ -143,26 +196,86 @@ const RFP = () => {
 
         {messages[currentChat].length !== 0 && (
           <div className="chat-container1 p-4">
-            {(messages[currentChat] || []).map((message, index) => (
+            {(messages[currentChat] || []).map((msg, i) => (
               <div
-                key={index}
-                className={`mb-4  ${
-                  message.sender === "user" ? "justify-end" : "justify-start"
-                }`}
-                style={{ display: "flex" }} // Explicitly ensure flex display
+                key={i}
+                  className={`flex flex-col ${
+           msg.role === 'user' ? 'items-end' : 'items-start'
+  }`} // Explicitly ensure flex display
               >
                 <div
                   className={` items-center justify-center  p-2 rounded flex-shrink border w-fit max-w-[65%] min-w-[48px] min-h-[65px]  break-words whitespace-normal ${
-                    message.sender === "user"
+                    msg.role === "user"
                       ? "bg-[#EDF5FD] text-black border-gray-200"
                       : "bg-white text-black border-gray-200"
                   }`}
                   style={{ overflow: "hidden" }}
                 >
-                  {message.text}
+                  {msg.role === 'assistant' ? `Assistant: ${msg.content}` : `You: ${msg.content}`}
+                                       {msg.download && (
+                  <button
+                    onClick={() => handleDownload(msg.download)}
+                    className="mt-2 flex items-center gap-1 text-blue-700 text-sm hover:underline"
+                  >
+                    <Download className="w-4 h-4" />
+                    Download {msg.download?.split('_')[0] || "File"}
+                  </button>
+                    )}
                 </div>
+                 {msg.role === 'assistant' && (
+                <div className="flex gap-2 mt-1 text-blue-700">
+                <ThumbsUp
+                                         className={`w-4 h-4 cursor-pointer transition ${
+                                           likedIndex === `up-${i}`
+                                             ? 'fill-blue-600'
+                                             : 'hover:text-blue-600'
+                                         }`}
+                                         onClick={() => setLikedIndex(`up-${i}`)}
+                                       />
+                <ThumbsDown
+                                         className={`w-4 h-4 cursor-pointer transition ${
+                                           likedIndex === `down-${i}`
+                                             ? 'fill-blue-600'
+                                             : 'hover:text-blue-600'
+                                         }`}
+                                         onClick={() => setLikedIndex(`down-${i}`)}
+                                       />
+                <Copy
+                                         className={`w-4 h-4 cursor-pointer transition ${
+                                           copiedIndex === i
+                                             ? 'text-green-600 scale-110'
+                                             : 'hover:text-blue-600'
+                                         }`}
+                                         onClick={() => handleCopy(msg.content, i)}
+                                       />
+                                       {copiedIndex === i && (
+                <span className="text-xs text-green-600 font-medium">Copied!</span>
+                                       )}
+                                       
+                  {msg.timeTaken && (<>
+              <span className="text-xs text-gray-500 ml-2">⏱️ {msg.timeTaken}s</span>
+               <span className="text-lg text-gray-500 ml-2" style={{marginTop:'-8px'}}>$</span>
+               </>
+            )}
+                </div>
+                                   )}
               </div>
+
+
             ))}
+
+
+             {isTyping && (
+  <div className="flex flex-col items-start">
+    <div className="items-center justify-center p-2 rounded bg-white text-black border border-gray-200 animate-pulse">
+      <div className="flex items-center gap-2">
+<span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+<span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+<span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce"></span>
+</div>
+    </div>
+  </div>
+)} 
           </div>
         )}
 
@@ -179,7 +292,7 @@ const RFP = () => {
           </button>
         </div>
 
-        <div className=" mt-10  p-4 bg-white">
+        <div className=" fixed bottom-1 mt-0  p-4 bg-white">
           <ul className="flex flex-wrap gap-4 bg-white p-0 rounded-md ">
             {buttonItems.map((item, index) => (
               <li key={index}>

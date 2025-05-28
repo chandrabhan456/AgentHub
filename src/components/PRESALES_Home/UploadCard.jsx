@@ -1,14 +1,28 @@
 import React, { useState,useEffect } from 'react';
 import { UploadCloud } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import {  useStateContext } from "../../contexts/ContextProvider";
 import RFP  from './RFP'
+
+   const modelName = [
+    { value: 'llm1', label: 'GPT-4o' },
+    { value: 'llm2', label: 'llama-3' },
+   
+    { value: 'llm3', label: 'GPT-4o-mini' },
+ 
+    // Add more options as needed
+  ];
+
 
 const UploadCard = () => {
   const [selectedFileRFP, setSelectedFileRFP] = useState(null);
   const [selectedFileAccelerator, setSelectedFileAccelerator] = useState(null);
+  const [modelLabel, setmodelLabel] = useState(modelName[0].value);
   const [uploadSuccess,setUploadSuccess] = useState(false)
+  const {selectedFile, setSelectedFile} = useStateContext()
   const navigate = useNavigate();
   const handleFileChangeRFP = (event) => {
+    setSelectedFile(event.target.files[0]);
     setSelectedFileRFP(event.target.files[0]);
   };
 
@@ -29,8 +43,23 @@ const UploadCard = () => {
   return (
     <div className="p-4 bg-white rounded-lg">
     {!uploadSuccess &&    <div className='mt-10'>
-      <p className=" mb-4">
+<p className=" mb-4 flex">
         <strong className='text-blue-500'>Note:</strong> Please upload both RFP document and Accelerator list in PDF or Word or Excel format to proceed.
+             <select
+        id="investment-type"
+        name="investment-type"
+        value={modelLabel}
+        style={{marginTop:'-10px'}}
+        className="border ml-2 border-gray-300 rounded-md p-2 text-lg focus:outline-none focus:border-gray-400"
+        required
+      >
+ 
+        {modelName.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
       </p>
       <div className="shadow-xl rounded-lg p-4 mb-4 bg-white">
         <div className="grid grid-cols-2 gap-4">

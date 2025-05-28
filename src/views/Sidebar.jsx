@@ -145,6 +145,9 @@ const Sidebar = () => {
           />
         </div>
       )}
+      {!mainPage && <p className="text-2xl mt-2 font-bold text-gray-500" style={{ textAlign: "center" }}>
+  {selectedAgent.toUpperCase()} Agent
+</p>}
       {selectedAgent === "gdpr" && home && (
         <nav
           style={{
